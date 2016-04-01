@@ -1,0 +1,118 @@
+{
+    "_response_info": {
+        "status": "ok"
+    },
+    "content_id": "08d48cdd-6b50-43ff-a53b-beab47f4aab0",
+    "details": {
+        "countries": [
+            {
+                "change_description": "Latest update: Summary - there have been a significant number of attacks in Kabul in recent months, including on the Afghan news agency and military bases and convoys ",
+                "id": "https://www.gov.uk/api/foreign-travel-advice%2Fafghanistan.json",
+                "identifier": "afghanistan",
+                "name": "Afghanistan",
+                "synonyms": [],
+                "updated_at": "2016-03-31T12:33:15+00:00",
+                "web_url": "https://www.gov.uk/foreign-travel-advice/afghanistan"
+            },
+            {
+                "change_description": "Latest Update: Local laws and customs section - homosexuality is decriminalised and anti-discrimination legislation is in place; Health section \u2013 removal of advice about haemorrhagic fever",
+                "id": "https://www.gov.uk/api/foreign-travel-advice%2Falbania.json",
+                "identifier": "albania",
+                "name": "Albania",
+                "synonyms": [],
+                "updated_at": "2016-03-30T12:24:46+00:00",
+                "web_url": "https://www.gov.uk/foreign-travel-advice/albania"
+            },
+            {
+                "change_description": "Latest update: Summary and Terrorism section \u2013 reports of an attempted suicide bomber being shot and killed in Tizi Ouzou on 23 March 2016",
+                "id": "https://www.gov.uk/api/foreign-travel-advice%2Falgeria.json",
+                "identifier": "algeria",
+                "name": "Algeria",
+                "synonyms": [
+                    "Sahel"
+                ],
+                "updated_at": "2016-03-30T17:39:29+00:00",
+                "web_url": "https://www.gov.uk/foreign-travel-advice/algeria"
+            },
+            {
+                "change_description": "Latest update: Summary \u2013 cases of locally transmitted Zika virus have been confirmed in the last 2 months; you should follow the advice of the National Travel Health Network and Centre and discuss your travel plans with your healthcare provider, particularly if you\u2019re pregnant or planning to become pregnant",
+                "id": "https://www.gov.uk/api/foreign-travel-advice%2Famerican-samoa.json",
+                "identifier": "american-samoa",
+                "name": "American Samoa",
+                "synonyms": [],
+                "updated_at": "2016-03-31T12:30:40+00:00",
+                "web_url": "https://www.gov.uk/foreign-travel-advice/american-samoa"
+            },
+            {
+                "change_description": "Latest update: this advice has been reviewed and re-issued without amendment",
+                "id": "https://www.gov.uk/api/foreign-travel-advice%2Fandorra.json",
+                "identifier": "andorra",
+                "name": "Andorra",
+                "synonyms": [],
+                "updated_at": "2016-03-29T17:20:20+00:00",
+                "web_url": "https://www.gov.uk/foreign-travel-advice/andorra"
+            },
+            {
+                "change_description": "Latest update: Summary \u2013 removal of precautionary security notice for US citizens advising them to avoid locations in Luanda; Entry requirements section \u2013 there is currently an outbreak of yellow fever in Luanda and other parts of Angola;  a vaccination is required for travellers arriving from all countries",
+                "id": "https://www.gov.uk/api/foreign-travel-advice%2Fangola.json",
+                "identifier": "angola",
+                "name": "Angola",
+                "synonyms": [],
+                "updated_at": "2016-03-30T15:42:44+00:00",
+                "web_url": "https://www.gov.uk/foreign-travel-advice/angola"
+            },
+            {
+                "change_description": "\r\nLatest update: this advice has been reviewed and re-issued without amendment\r\n\r\n",
+                "id": "https://www.gov.uk/api/foreign-travel-advice%2Fanguilla.json",
+                "identifier": "anguilla",
+                "name": "Anguilla",
+                "synonyms": [],
+                "updated_at": "2016-03-28T12:13:26+00:00",
+                "web_url": "https://www.gov.uk/foreign-travel-advice/anguilla"
+            },
+            {
+                "change_description": "Latest update: this advice has been reviewed and re-issued without amendment\r\n",
+                "id": "https://www.gov.uk/api/foreign-travel-advice%2Fantigua-and-barbuda.json",
+                "identifier": "antigua-and-barbuda",
+                "name": "Antigua and Barbuda",
+                "synonyms": [],
+                "updated_at": "2016-03-21T14:47:52+00:00",
+                "web_url": "https://www.gov.uk/foreign-travel-advice/antigua-and-barbuda"
+            },
+            {
+                "change_description": "Latest update - summary section - Reports of Dengue Fever outbreak in northern provinces",
+                "id": "https://www.gov.uk/api/foreign-travel-advice%2Fargentina.json",
+                "identifier": "argentina",
+                "name": "Argentina",
+                "synonyms": [],
+                "updated_at": "2016-03-31T14:57:20+00:00",
+                "web_url": "https://www.gov.uk/foreign-travel-advice/argentina"
+            },
+            {
+                "change_description": "Latest update: this advice has been reviewed and re-issued without amendment",
+                "id": "https://www.gov.uk/api/foreign-travel-advice%2Farmenia.json",
+                "identifier": "armenia",
+                "name": "Armenia",
+                "synonyms": [],
+                "updated_at": "2016-03-09T12:59:30+00:00",
+                "web_url": "https://www.gov.uk/foreign-travel-advice/armenia"
+            }
+        ],
+        "description": "Latest travel advice by country including safety and security, entry requirements, travel warnings and health",
+        "language": "en",
+        "need_extended_font": false,
+        "need_ids": [
+            "101191"
+        ]
+    },
+    "format": "custom-application",
+    "id": "https://www.gov.uk/api/foreign-travel-advice.json",
+    "in_beta": false,
+    "owning_app": "travel-advice-publisher",
+    "related": [],
+    "related_external_links": [],
+    "tags": [],
+    "title": "Foreign travel advice",
+    "updated_at": "2016-03-31T17:23:41+01:00",
+    "web_url": "https://www.gov.uk/foreign-travel-advice"
+}

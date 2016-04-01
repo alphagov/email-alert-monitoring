@@ -13,3 +13,22 @@ task :run do
     exit(1)
   end
 end
+
+task :run_travel_alerts do
+  require_relative './lib/travel_advice_alert_email_verifier'
+
+  verifier = TravelAdviceAlertEmailVerifier.new
+
+  if verifier.have_all_alerts_been_emailed?
+    puts "All travel advice email alerts have been sent. Everything is okay!"
+  else
+    verifier.missing_alerts.each do |email, result|
+      /subject:(.*)/.match(result) do |country|
+        puts "#{email} has not received a travel advice email for #{country[1]}"
+      end
+    end
+
+    exit(1)
+  end
+end
+
