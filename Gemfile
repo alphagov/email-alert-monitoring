@@ -5,3 +5,4 @@ gem 'rake', '~> 10.5'
 
 gem 'rspec', '~> 3.4'
 gem 'webmock', '~> 1.22'
+gem 'timecop', '~> 0.8'
