@@ -10,7 +10,7 @@ task :run do
       puts "#{email} has not received an email with #{url}"
     end
 
-    exit(1)
+    exit(2)
   end
 end
 
@@ -28,7 +28,7 @@ task :run_travel_alerts do
       end
     end
 
-    exit(1)
+    exit(2)
   end
 end
 
