@@ -5,6 +5,7 @@ class GoogleAuth
   def self.service
     service = Google::Apis::GmailV1::GmailService.new
     service.client_options.application_name = "GOV.UK Email monitoring service"
+    service.request_options.retries = 3
     service.authorization = get_credentials
     service
   end
