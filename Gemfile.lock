@@ -8,6 +8,10 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    airbrake (4.3.5)
+      builder
+      multi_json
+    builder (3.2.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
@@ -89,6 +93,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake (~> 4.3.1)
   google-api-client (~> 0.9.1)
   rake (~> 10.5)
   rspec (~> 3.4)
