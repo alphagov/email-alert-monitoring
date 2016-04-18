@@ -66,6 +66,7 @@ RSpec.describe "Drug email alert verifier" do
 
   def when_the_verifier_is_run
     @verifier = DrugAlertEmailVerifier.new
+    @verifier.run_report
   end
 
   def then_it_reports_that_all_emails_have_been_sent

@@ -3,7 +3,7 @@ require 'timecop'
 require_relative './../../lib/travel_advice_alert_email_verifier'
 
 RSpec.describe TravelAdviceAlertEmailVerifier do
-  let(:verifier) { described_class.new }
+  let(:verifier) { described_class.new.tap { |v| v.run_report } }
 
   before do
     set_credentials

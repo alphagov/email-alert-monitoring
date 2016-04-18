@@ -1,7 +1,7 @@
 task :run do
   require_relative './lib/drug_alert_email_verifier'
 
-  verifier = DrugAlertEmailVerifier.new
+  verifier = DrugAlertEmailVerifier.new.run_report
 
   if verifier.have_all_alerts_been_emailed?
     puts "All email alerts have been sent. Everything is okay!"
@@ -17,7 +17,7 @@ end
 task :run_travel_alerts do
   require_relative './lib/travel_advice_alert_email_verifier'
 
-  verifier = TravelAdviceAlertEmailVerifier.new
+  verifier = TravelAdviceAlertEmailVerifier.new.run_report
 
   if verifier.have_all_alerts_been_emailed?
     puts "All travel advice email alerts have been sent. Everything is okay!"
