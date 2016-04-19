@@ -58,6 +58,7 @@ GEM
     multi_json (1.11.2)
     multipart-post (2.0.0)
     os (0.9.6)
+    plek (1.12.0)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -106,6 +107,7 @@ PLATFORMS
 DEPENDENCIES
   airbrake (~> 4.3.1)
   google-api-client (~> 0.9.1)
+  plek (~> 1.10)
   pry-byebug
   rake (~> 10.5)
   rspec (~> 3.4)
