@@ -1,6 +1,7 @@
 require "pry-byebug"
 require "airbrake"
 require_relative "./lib/task_runner"
+require "plek"
 
 if ENV['ERRBIT_API_KEY']
   errbit_uri = Plek.find_uri('errbit')
