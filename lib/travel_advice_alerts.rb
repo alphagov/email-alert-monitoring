@@ -33,7 +33,7 @@ class TravelAdviceAlerts
     end
 
     def updated_recently?
-      Time.now - 172800 <= updated_at && updated_at <= Time.now - 3600
+      Time.now - 172800 <= updated_at && updated_at <= Time.now - 900
     end
 
     def country
