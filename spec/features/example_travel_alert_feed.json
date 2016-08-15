@@ -100,7 +100,6 @@
         ],
         "description": "Latest travel advice by country including safety and security, entry requirements, travel warnings and health",
         "language": "en",
-        "need_extended_font": false,
         "need_ids": [
             "101191"
         ]
