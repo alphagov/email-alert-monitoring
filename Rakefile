@@ -20,6 +20,10 @@ task :run do
   TaskRunner.new.verify_with_retries(verifier: verifier) do
     if verifier.have_all_alerts_been_emailed?
       puts "All email alerts have been sent. Everything is okay!"
+
+      verifier.acknowledged_alerts.each do |email, url|
+        puts "#{email} has not received an email with #{url} but has been acknowledged"
+      end
     else
       verifier.missing_alerts.each do |email, url|
         puts "#{email} has not received an email with #{url}"

@@ -1,10 +1,15 @@
 require_relative './inbox'
 
 class AlertEmailVerifier
-  attr_reader :missing_alerts, :emailed_alerts
+  attr_reader :missing_alerts, :emailed_alerts, :acknowledged_alerts
+
+  ACKNOWLEDGED_EMAIL_CONTENTS = [
+    "https://www.gov.uk/drug-device-alerts/field-safety-notices-22-26-august-2016",
+  ].freeze
 
   def initialize
     @emailed_alerts = []
+    @acknowledged_alerts = []
     @missing_alerts = []
   end
 
@@ -17,6 +22,8 @@ class AlertEmailVerifier
       emails_that_should_have_received_alert.all? do |email|
         if has_email_address_received_email_with_contents?(email: email, contents: contents)
           @emailed_alerts << [email, contents]
+        elsif acknowledged_as_missing?(contents: contents)
+          @acknowledged_alerts << [email, contents]
         else
           @missing_alerts << [email, contents]
         end
@@ -29,6 +36,10 @@ private
   def has_email_address_received_email_with_contents?(email:, contents:)
     count = inbox.message_count_for_query("#{contents} to:#{email}")
     count != 0
+  end
+
+  def acknowledged_as_missing?(contents:)
+    ACKNOWLEDGED_EMAIL_CONTENTS.include?(contents)
   end
 
   def inbox
