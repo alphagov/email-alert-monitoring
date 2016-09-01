@@ -52,4 +52,3 @@ task :run_travel_alerts do
     end
   end
 end
-
