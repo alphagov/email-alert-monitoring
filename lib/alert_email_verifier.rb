@@ -6,6 +6,7 @@ class AlertEmailVerifier
   ACKNOWLEDGED_EMAIL_CONTENTS = [
     "https://www.gov.uk/drug-device-alerts/field-safety-notices-22-26-august-2016",
     "https://www.gov.uk/drug-device-alerts/accu-chek-insight-insulin-pump-system-risk-of-over-or-under-infusion-of-insulin",
+    "https://www.gov.uk/drug-device-alerts/airvo-2-and-myairvo-2-humidifier-risk-of-undetected-auditory-alarm",
   ].freeze
 
   def initialize
