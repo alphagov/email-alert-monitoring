@@ -38,10 +38,8 @@ Since there is no special casing for digests for these alerts, only a single
 email is used. The `EMAILS_THAT_SHOULD_RECEIVE_TRAVEL_ADVICE_ALERTS` env var is
 used to determine the addresses to query.
 
-The monitoring for these alerts looks at the [contentapi JSON
-feed](https://www.gov.uk/api/foreign-travel-advice.json) - the contentapi no
-longer powers the pages themselves but is a useful check separate from the
-publishing-api workflow.
+The monitoring for these alerts looks at the [Content Store JSON
+feed](https://www.gov.uk/api/content/foreign-travel-advice).
 
 ## Technical documentation
 
