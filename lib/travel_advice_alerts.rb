@@ -1,7 +1,6 @@
 require 'open-uri'
 require 'json'
 require 'time'
-require 'active_support/all'
 
 class TravelAdviceAlerts
   FEED_URL = "https://www.gov.uk/api/content/foreign-travel-advice"
@@ -38,7 +37,7 @@ class TravelAdviceAlerts
     end
 
     def country
-      I18n.transliterate(entry['country']['name'])
+      entry['country']['name']
     end
 
     def search_value
