@@ -38,11 +38,11 @@ class TravelAdviceAlerts
     end
 
     def country
-      I18n.transliterate(entry['country']['name'])
+      entry['country']['name']
     end
 
     def search_value
-      %Q("#{alert_time}" "#{country}")
+      %Q("#{alert_time}" subject:#{country})
     end
   end
 end
