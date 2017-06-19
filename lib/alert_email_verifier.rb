@@ -36,7 +36,8 @@ class AlertEmailVerifier
 private
 
   def has_email_address_received_email_with_contents?(email:, contents:)
-    count = inbox.message_count_for_query("#{contents} to:#{email}")
+    query = "#{contents} to:#{email}"
+    count = inbox.message_count_for_query(query)
     count != 0
   end
 

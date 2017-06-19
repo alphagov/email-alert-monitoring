@@ -42,7 +42,7 @@ class TravelAdviceAlerts
     end
 
     def search_value
-      %Q("#{alert_time}" subject:#{country})
+      %Q("#{alert_time}" "#{country}")
     end
   end
 end
