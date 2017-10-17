@@ -37,8 +37,8 @@ task :run_travel_alerts do
       puts "All travel advice email alerts have been sent. Everything is okay!"
     else
       verifier.missing_alerts.each do |email, result|
-        /subject:(.*)/.match(result) do |country|
-          puts "#{email} has not received a travel advice email for #{country[1]}"
+        /subject:(.*)/.match(result) do |subject|
+          puts "#{email} has not receieved a travel advice alert email with a subject of #{[1]}"
         end
       end
 

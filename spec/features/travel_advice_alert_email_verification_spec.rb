@@ -35,10 +35,26 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
 
       it "does not query for items that are more than two days old" do
         expect(verifier.missing_alerts.size).to eql(0)
-        expect(a_request(
-          :get, "https://www.googleapis.com/gmail/v1/users/me/messages").
-          with(query: { q: "\"09-03-2016 12:59 PM GMT\" subject:Armenia to:c@example.org" })).not_to have_been_made
+        expect(
+          a_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages").
+          with(query: { q: '"09-03-2016 12:59 PM GMT" subject:"Armenia travel advice" to:c@example.org' })
+        ).not_to have_been_made
+      end
 
+      context "when the subject of travel advice doesn't match the country name" do
+        before do
+          json = File.read(File.dirname(__FILE__) + "/example_travel_alert_feed.json")
+          json = json.gsub('São Tomé and Principe travel advice', 'Sao Tome & Principe travel advice')
+          stub_request(:get, TravelAdviceAlerts::FEED_URL).to_return(body: json)
+        end
+
+        it 'requests based on the title attribute rather than the country name' do
+          expect(verifier.have_all_alerts_been_emailed?).to eql(true)
+          expect(
+            a_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages").
+            with(query: { q: '"31-03-2016 14:57 PM GMT" subject:"Sao Tome & Principe travel advice" to:c@example.org' })
+          ).to have_been_made
+        end
       end
 
       context "when a travel advice item is updated but email has not been sent" do
@@ -49,7 +65,7 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
 
           stub_request(
             :get, "https://www.googleapis.com/gmail/v1/users/me/messages").
-            with(query: { q: "\"31-03-2016 15:24 PM GMT\" subject:Albania to:c@example.org" }).
+            with(query: { q: '"31-03-2016 15:24 PM GMT" subject:"Albania travel advice" to:c@example.org' }).
             to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { 'Content-Type' => 'application/json'})
         end
 

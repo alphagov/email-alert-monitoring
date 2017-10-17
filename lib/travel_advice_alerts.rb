@@ -36,12 +36,12 @@ class TravelAdviceAlerts
       Time.now - 172800 <= updated_at && updated_at <= Time.now - 900
     end
 
-    def country
-      entry['country']['name']
+    def subject
+      entry['title']
     end
 
     def search_value
-      %Q("#{alert_time}" subject:#{country})
+      %("#{alert_time}" subject:"#{subject}")
     end
   end
 end
