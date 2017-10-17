@@ -7,7 +7,7 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
 
   before do
     set_credentials
-    Timecop.freeze(Time.local(2016, 03, 31, 17, 30))
+    Timecop.freeze(Time.gm(2016, 03, 31, 17, 30))
   end
 
   after do
