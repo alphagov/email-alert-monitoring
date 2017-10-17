@@ -387,24 +387,25 @@
       },
       {
         "analytics_identifier": null,
-        "api_path": "\/api\/content\/foreign-travel-advice\/eritrea",
-        "base_path": "\/foreign-travel-advice\/eritrea",
+        "api_path": "\/api\/content\/foreign-travel-advice\/sao-tome-and-principe",
+        "base_path": "\/foreign-travel-advice\/sao-tome-and-principe",
         "content_id": "6b47e9b9-0942-48b5-8ee1-778699ac95f0",
-        "description": "Latest travel advice for Eritrea including safety and security, entry requirements, travel warnings and health",
+        "description": "Latest travel advice for São Tomé and Principe including safety and security, entry requirements, travel warnings and health",
         "document_type": "travel_advice",
         "locale": "en",
         "public_updated_at": "2016-03-31T14:57:20+00:00",
         "schema_name": "travel_advice",
-        "title": "Eritrea travel advice",
+        "title": "São Tomé and Principe travel advice",
         "withdrawn": false,
         "country": {
-          "slug": "eritrea",
-          "name": "Eritrea",
+          "slug": "sao-tome-and-principe",
+          "name": "São Tomé and Principe",
           "synonyms": [
-            "Sahel"
+            "Sao Tome and Principe",
+            "Sao Tome & Principe"
           ]
         },
-        "change_description": "Latest update: Entry requirements section \u2013 UK Emergency Travel Documents are accepted for entry, airside transit and exit from Eritrea",
+        "change_description": "Money section –  travellers cheques are not accepted in Sao Tome and Principe",
         "links": {
           "parent": [
             {
