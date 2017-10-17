@@ -1,6 +1,11 @@
 require "pry-byebug"
 require_relative "./lib/task_runner"
 require "plek"
+require 'rspec/core/rake_task'
+
+RSpec::Core::RakeTask.new(:spec)
+
+task :default => :spec
 
 task :run do
   require_relative './lib/drug_alert_email_verifier'
