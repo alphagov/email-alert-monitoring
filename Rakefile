@@ -38,7 +38,7 @@ task :run_travel_alerts do
     else
       verifier.missing_alerts.each do |email, result|
         /subject:(.*)/.match(result) do |subject|
-          puts "#{email} has not receieved a travel advice alert email with a subject of #{[1]}"
+          puts "#{email} has not received a travel advice alert email with a subject of #{[1]}"
         end
       end
 
