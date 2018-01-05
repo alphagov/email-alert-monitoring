@@ -47,7 +47,7 @@ feed](https://www.gov.uk/api/content/foreign-travel-advice).
 
 `bundle exec rake run` for the drug device alert checker
 
-`bundle exec rake run` for the travel advice alert checker
+`bundle exec rake run_travel_alerts` for the travel advice alert checker
 
 Both rake tasks will exit normally and not output anything if everything is
 okay.
