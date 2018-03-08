@@ -37,7 +37,7 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
         expect(verifier.missing_alerts.size).to eql(0)
         expect(
           a_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages").
-          with(query: { q: '"09-03-2016 12:59 PM GMT" subject:"Armenia travel advice" to:c@example.org' })
+          with(query: { q: '"12:59pm, 9 March 2016" subject:"Armenia travel advice" to:c@example.org' })
         ).not_to have_been_made
       end
 
@@ -52,7 +52,7 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
           expect(verifier.have_all_alerts_been_emailed?).to eql(true)
           expect(
             a_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages").
-            with(query: { q: '"31-03-2016 14:57 PM GMT" subject:"Sao Tome & Principe travel advice" to:c@example.org' })
+            with(query: { q: '" 2:57pm, 31 March 2016" subject:"Sao Tome & Principe travel advice" to:c@example.org' })
           ).to have_been_made
         end
       end
@@ -65,7 +65,7 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
 
           stub_request(
             :get, "https://www.googleapis.com/gmail/v1/users/me/messages").
-            with(query: { q: '"31-03-2016 15:24 PM GMT" subject:"Albania travel advice" to:c@example.org' }).
+            with(query: { q: '" 3:24pm, 31 March 2016" subject:"Albania travel advice" to:c@example.org' }).
             to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { 'Content-Type' => 'application/json'})
         end
 
@@ -91,4 +91,3 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
     end
   end
 end
-

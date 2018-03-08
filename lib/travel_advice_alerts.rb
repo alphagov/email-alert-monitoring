@@ -3,7 +3,8 @@ require 'json'
 require 'time'
 
 class TravelAdviceAlerts
-  FEED_URL = "https://www.gov.uk/api/content/foreign-travel-advice"
+  FEED_URL = "https://www.gov.uk/api/content/foreign-travel-advice".freeze
+  EMAIL_DATE_FORMAT = "%l:%M%P, %-d %B %Y".freeze # make sure this matches email-alert-api
 
   def latest_travel_advice_alerts
     # Extract the countries updated from two days to one hour ago.
@@ -29,7 +30,7 @@ class TravelAdviceAlerts
     end
 
     def alert_time
-      updated_at.utc.strftime("%d-%m-%Y %H:%M %p GMT")
+      updated_at.utc.strftime(EMAIL_DATE_FORMAT)
     end
 
     def updated_recently?
