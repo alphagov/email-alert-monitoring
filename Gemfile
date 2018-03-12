@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'google-api-client', '~> 0.9.1'
+gem 'google-api-client', '~> 0.19'
 gem 'rake', '~> 10.5'
 
 gem 'rspec', '~> 3.4'
