@@ -38,7 +38,7 @@ RSpec.describe "Drug email alert verifier" do
   def and_there_is_a_drug_advice_alert_published_very_recently
     rss = File.read(File.dirname(__FILE__) + "/example_rss_feed.xml")
 
-    rss = rss.gsub('2016-02-01T12:58:40+00:00', Time.now.iso8601)
+    rss = rss.gsub("2016-02-01T12:58:40+00:00", Time.now.iso8601)
 
     stub_request(:get, "https://www.gov.uk/drug-device-alerts.atom").
       to_return(body: rss)
@@ -46,21 +46,21 @@ RSpec.describe "Drug email alert verifier" do
 
   def and_emails_have_been_sent_for_all_alerts
     %w[a@example.org b@example.org].each do |email|
-      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22An%20important%20alert%22%20to:#{email.gsub("+", "%2B")}").
-        to_return(body: { resultSizeEstimate: 1 }.to_json, headers: { 'Content-Type' => 'application/json'})
+      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22An%20important%20alert%22%20to:#{email.gsub('+', '%2B')}").
+        to_return(body: { resultSizeEstimate: 1 }.to_json, headers: { "Content-Type" => "application/json" })
 
-      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22Another%20important%20alert%22%20to:#{email.gsub("+", "%2B")}").
-        to_return(body: { resultSizeEstimate: 1 }.to_json, headers: { 'Content-Type' => 'application/json'})
+      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22Another%20important%20alert%22%20to:#{email.gsub('+', '%2B')}").
+        to_return(body: { resultSizeEstimate: 1 }.to_json, headers: { "Content-Type" => "application/json" })
     end
   end
 
   def and_no_emails_have_been_sent
     %w[a@example.org b@example.org].each do |email|
-      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22An%20important%20alert%22%20to:#{email.gsub("+", "%2B")}").
-        to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { 'Content-Type' => 'application/json'})
+      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22An%20important%20alert%22%20to:#{email.gsub('+', '%2B')}").
+        to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { "Content-Type" => "application/json" })
 
-      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22Another%20important%20alert%22%20to:#{email.gsub("+", "%2B")}").
-        to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { 'Content-Type' => 'application/json'})
+      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22Another%20important%20alert%22%20to:#{email.gsub('+', '%2B')}").
+        to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { "Content-Type" => "application/json" })
     end
   end
 

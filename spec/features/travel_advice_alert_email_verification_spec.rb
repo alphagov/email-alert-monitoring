@@ -3,11 +3,11 @@ require 'timecop'
 require_relative './../../lib/travel_advice_alert_email_verifier'
 
 RSpec.describe TravelAdviceAlertEmailVerifier do
-  let(:verifier) { described_class.new.tap { |v| v.run_report } }
+  let(:verifier) { described_class.new.tap(&:run_report) }
 
   before do
     set_credentials
-    Timecop.freeze(Time.gm(2016, 03, 31, 17, 30))
+    Timecop.freeze(Time.gm(2016, 3, 31, 17, 30))
   end
 
   after do
@@ -22,10 +22,9 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
 
     context "when all emails are sent" do
       before do
-        stub_request(
-          :get, "https://www.googleapis.com/gmail/v1/users/me/messages").
-          with(query: hash_including(:q)).
-          to_return(body: { resultSizeEstimate: 1 }.to_json, headers: { 'Content-Type' => 'application/json'})
+        stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages")
+          .with(query: hash_including(:q))
+          .to_return(body: { resultSizeEstimate: 1 }.to_json, headers: { "Content-Type" => "application/json" })
       end
 
       it "reports that all items have been sent via email" do
@@ -63,10 +62,9 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
           json = json.gsub('2016-03-30T12:24:46+00:00', '2016-03-31T15:24:46+00:00')
           stub_request(:get, TravelAdviceAlerts::FEED_URL).to_return(body: json)
 
-          stub_request(
-            :get, "https://www.googleapis.com/gmail/v1/users/me/messages").
-            with(query: { q: '" 3:24pm, 31 March 2016" subject:"Albania travel advice" to:c@example.org' }).
-            to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { 'Content-Type' => 'application/json'})
+          stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages")
+            .with(query: { q: '" 3:24pm, 31 March 2016" subject:"Albania travel advice" to:c@example.org' })
+            .to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { "Content-Type" => "application/json" })
         end
 
         it 'reports that there is an alert that has not been sent' do
@@ -78,10 +76,9 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
 
     context "when no emails are sent" do
       before do
-        stub_request(
-          :get, "https://www.googleapis.com/gmail/v1/users/me/messages").
-          with(query: hash_including(:q)).
-          to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { 'Content-Type' => 'application/json'})
+        stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages")
+          .with(query: hash_including(:q))
+          .to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { "Content-Type" => "application/json" })
       end
 
       it "reports that no alerts have been sent" do

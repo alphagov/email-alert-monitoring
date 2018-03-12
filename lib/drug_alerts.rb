@@ -1,8 +1,8 @@
-require 'rss'
-require 'open-uri'
+require "rss"
+require "open-uri"
 
 class DrugAlerts
-  FEED_URL = 'https://www.gov.uk/drug-device-alerts.atom'
+  FEED_URL = "https://www.gov.uk/drug-device-alerts.atom".freeze
   NUMBER_OF_ITEMS = 5
 
   # Fetch the latest drug alerts from the RSS feed. Because we expect a little

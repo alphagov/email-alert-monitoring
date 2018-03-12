@@ -31,5 +31,5 @@ def set_credentials
 
   # the response there doesn't matter, as long as it's JSON.
   stub_request(:post, "https://www.googleapis.com/oauth2/v4/token").
-    to_return(body: "{}", headers: { 'Content-Type' => 'application/json'})
+    to_return(body: "{}", headers: { "Content-Type" => "application/json" })
 end
