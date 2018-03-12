@@ -1,14 +1,14 @@
 require "pry-byebug"
 require_relative "./lib/task_runner"
 require "plek"
-require 'rspec/core/rake_task'
+require "rspec/core/rake_task"
 
 RSpec::Core::RakeTask.new(:spec)
 
-task :default => :spec
+task default: :spec
 
 task :run do
-  require_relative './lib/drug_alert_email_verifier'
+  require_relative "./lib/drug_alert_email_verifier"
 
   verifier = DrugAlertEmailVerifier.new
   TaskRunner.new.verify_with_retries(verifier: verifier) do
@@ -29,7 +29,7 @@ task :run do
 end
 
 task :run_travel_alerts do
-  require_relative './lib/travel_advice_alert_email_verifier'
+  require_relative "./lib/travel_advice_alert_email_verifier"
 
   verifier = TravelAdviceAlertEmailVerifier.new
   TaskRunner.new.verify_with_retries(verifier: verifier) do

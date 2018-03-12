@@ -1,4 +1,4 @@
-require_relative 'google_auth'
+require_relative "google_auth"
 
 class Inbox
   def message_count_for_query(query)
@@ -6,8 +6,9 @@ class Inbox
   end
 
 private
+
   def messages_for_query(query)
-    service.list_user_messages('me', q: query)
+    service.list_user_messages("me", q: query)
   end
 
   def service

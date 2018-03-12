@@ -5,7 +5,7 @@ class TaskRunner
     begin
       tries ||= retries
       verifier.run_report
-    rescue => e
+    rescue StandardError => e
       GovukError.notify(e)
       unless (tries -= 1).zero?
         retry

@@ -1,5 +1,5 @@
-require 'googleauth'
-require 'google/apis/gmail_v1'
+require "googleauth"
+require "google/apis/gmail_v1"
 
 class GoogleAuth
   def self.service
@@ -11,12 +11,12 @@ class GoogleAuth
   end
 
   def self.get_credentials
-    client_id = Google::Auth::ClientId.from_hash({
+    client_id = Google::Auth::ClientId.from_hash(
       "installed" => {
-        "client_id" => ENV.fetch('GOOGLE_CLIENT_ID'),
-        "client_secret" => ENV.fetch('GOOGLE_CLIENT_SECRET'),
+        "client_id" => ENV.fetch("GOOGLE_CLIENT_ID"),
+        "client_secret" => ENV.fetch("GOOGLE_CLIENT_SECRET"),
       }
-    })
+    )
 
     authorizer = Google::Auth::UserAuthorizer.new(
       client_id,
@@ -24,12 +24,12 @@ class GoogleAuth
       DummyEnvironmentTokenStore.new
     )
 
-    authorizer.get_credentials('default')
+    authorizer.get_credentials("default")
   end
 
   class DummyEnvironmentTokenStore
     def load(_id)
-      ENV.fetch('GOOGLE_OAUTH_CREDENTIALS')
+      ENV.fetch("GOOGLE_OAUTH_CREDENTIALS")
     end
 
     def store(_id, _data)

@@ -1,6 +1,6 @@
-require 'open-uri'
-require 'json'
-require 'time'
+require "open-uri"
+require "json"
+require "time"
 
 class TravelAdviceAlerts
   FEED_URL = "https://www.gov.uk/api/content/foreign-travel-advice".freeze
@@ -11,7 +11,7 @@ class TravelAdviceAlerts
     # Unlike with drug alerts, we expect multiple updates from the same set of
     # 225 countries, so search on update time + country rather than the linked url.
     open(FEED_URL) do |raw_json|
-      JSON.load(raw_json)["links"]["children"]
+      JSON.parse(raw_json.read)["links"]["children"]
         .map { |json_entry| TravelAdviceEntry.new(json_entry) }
         .select(&:updated_recently?)
         .map(&:search_value)
@@ -38,7 +38,7 @@ class TravelAdviceAlerts
     end
 
     def subject
-      entry['title']
+      entry["title"]
     end
 
     def search_value
