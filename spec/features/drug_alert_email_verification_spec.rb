@@ -46,20 +46,20 @@ RSpec.describe "Drug email alert verifier" do
 
   def and_emails_have_been_sent_for_all_alerts
     %w[a@example.org b@example.org].each do |email|
-      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=https://www.gov.uk/drug-device-alerts/an-important-alert%20to:#{email.gsub("+", "%2B")}").
+      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22An%20important%20alert%22%20to:#{email.gsub("+", "%2B")}").
         to_return(body: { resultSizeEstimate: 1 }.to_json, headers: { 'Content-Type' => 'application/json'})
 
-      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=https://www.gov.uk/drug-device-alerts/another-important-alert%20to:#{email.gsub("+", "%2B")}").
+      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22Another%20important%20alert%22%20to:#{email.gsub("+", "%2B")}").
         to_return(body: { resultSizeEstimate: 1 }.to_json, headers: { 'Content-Type' => 'application/json'})
     end
   end
 
   def and_no_emails_have_been_sent
     %w[a@example.org b@example.org].each do |email|
-      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=https://www.gov.uk/drug-device-alerts/an-important-alert%20to:#{email.gsub("+", "%2B")}").
+      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22An%20important%20alert%22%20to:#{email.gsub("+", "%2B")}").
         to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { 'Content-Type' => 'application/json'})
 
-      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=https://www.gov.uk/drug-device-alerts/another-important-alert%20to:#{email.gsub("+", "%2B")}").
+      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22Another%20important%20alert%22%20to:#{email.gsub("+", "%2B")}").
         to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { 'Content-Type' => 'application/json'})
     end
   end

@@ -14,7 +14,7 @@ class DrugAlerts
         .parse(raw_rss)
         .items.first(NUMBER_OF_ITEMS)
         .select { |entry| entry.updated.content < Time.now - 3600 }
-        .map(&:link).map(&:href)
+        .map { |f| %{subject:"#{f.title.content}"} }
     end
   end
 end
