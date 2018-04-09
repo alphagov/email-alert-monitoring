@@ -51,7 +51,7 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
           expect(verifier.have_all_alerts_been_emailed?).to eql(true)
           expect(
             a_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages").
-            with(query: { q: '" 2:57pm, 31 March 2016" subject:"Sao Tome & Principe travel advice" to:c@example.org' })
+            with(query: { q: '" 3:57pm, 31 March 2016" subject:"Sao Tome & Principe travel advice" to:c@example.org' })
           ).to have_been_made
         end
       end
@@ -63,7 +63,7 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
           stub_request(:get, TravelAdviceAlerts::FEED_URL).to_return(body: json)
 
           stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages")
-            .with(query: { q: '" 3:24pm, 31 March 2016" subject:"Albania travel advice" to:c@example.org' })
+            .with(query: { q: '" 4:24pm, 31 March 2016" subject:"Albania travel advice" to:c@example.org' })
             .to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { "Content-Type" => "application/json" })
         end
 
