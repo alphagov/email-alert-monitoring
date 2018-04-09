@@ -1,6 +1,7 @@
 require "open-uri"
 require "json"
 require "time"
+require "tzinfo"
 
 class TravelAdviceAlerts
   FEED_URL = "https://www.gov.uk/api/content/foreign-travel-advice".freeze
@@ -25,16 +26,21 @@ class TravelAdviceAlerts
       @entry = entry
     end
 
+    def timezone
+      @timezone ||= TZInfo::Timezone.get("Europe/London")
+    end
+
     def updated_at
-      @updated_at ||= Time.parse(entry["public_updated_at"])
+      @updated_at ||= timezone.utc_to_local(Time.parse(entry["public_updated_at"]))
     end
 
     def alert_time
-      updated_at.utc.strftime(EMAIL_DATE_FORMAT)
+      updated_at.strftime(EMAIL_DATE_FORMAT)
     end
 
     def updated_recently?
-      Time.now - 172800 <= updated_at && updated_at <= Time.now - 900
+      now = timezone.utc_to_local(Time.now)
+      now - 172800 <= updated_at && updated_at <= now - 900
     end
 
     def subject
