@@ -4,9 +4,7 @@ class AlertEmailVerifier
   attr_reader :missing_alerts, :emailed_alerts, :acknowledged_alerts
 
   ACKNOWLEDGED_EMAIL_CONTENTS = [
-    "https://www.gov.uk/drug-device-alerts/field-safety-notices-22-26-august-2016",
-    "https://www.gov.uk/drug-device-alerts/accu-chek-insight-insulin-pump-system-risk-of-over-or-under-infusion-of-insulin",
-    "https://www.gov.uk/drug-device-alerts/airvo-2-and-myairvo-2-humidifier-risk-of-undetected-auditory-alarm",
+    %{subject:"Field Safety Notice - 02 to 06 April 2018"},
   ].freeze
 
   def initialize
