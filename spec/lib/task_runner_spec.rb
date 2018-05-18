@@ -11,13 +11,17 @@ RSpec.describe TaskRunner do
       it "tells GovukError and retries the specified number of times" do
         expect(verifier).to receive(:run_report).exactly(3).times
         expect(GovukError).to receive(:notify).with(StandardError).exactly(3).times
-        verified = false
+        @verified = false
 
-        TaskRunner.new.verify_with_retries(retries: 3, verifier: verifier) do
-          verified = true
+        def run_verify_with_retries
+          TaskRunner.new.verify_with_retries(retries: 3, verifier: verifier) do
+            @verified = true
+          end
         end
 
-        expect(verified).to be false
+        expect { run_verify_with_retries }.to raise_error(StandardError)
+
+        expect(@verified).to be false
       end
     end
 

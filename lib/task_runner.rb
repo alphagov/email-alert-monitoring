@@ -7,9 +7,8 @@ class TaskRunner
       verifier.run_report
     rescue StandardError => e
       GovukError.notify(e)
-      unless (tries -= 1).zero?
-        retry
-      end
+      retry unless (tries -= 1).zero?
+      raise
     else
       yield
     end
