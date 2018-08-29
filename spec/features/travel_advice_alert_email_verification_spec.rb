@@ -16,8 +16,8 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
 
   context "when there are travel advice alerts updated between two days and one hour ago" do
     before do
-      stub_request(:get, TravelAdviceAlerts::FEED_URL).
-        to_return(body: File.read(File.dirname(__FILE__) + "/example_travel_alert_feed.json"))
+      stub_request(:get, TravelAdviceAlerts::HEALTHCHECK_URL).
+        to_return(body: File.read(File.dirname(__FILE__) + "/example_travel_advice_publisher_healthcheck.json"))
     end
 
     context "when all emails are sent" do
@@ -32,19 +32,11 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
         expect(verifier.emailed_alerts.length).to eql(6)
       end
 
-      it "does not query for items that are more than two days old" do
-        expect(verifier.missing_alerts.size).to eql(0)
-        expect(
-          a_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages").
-          with(query: { q: '"12:59pm, 9 March 2016" subject:"Armenia travel advice" to:c@example.org' })
-        ).not_to have_been_made
-      end
-
       context "when the subject of travel advice doesn't match the country name" do
         before do
-          json = File.read(File.dirname(__FILE__) + "/example_travel_alert_feed.json")
+          json = File.read(File.dirname(__FILE__) + "/example_travel_advice_publisher_healthcheck.json")
           json = json.gsub('São Tomé and Principe travel advice', 'Sao Tome & Principe travel advice')
-          stub_request(:get, TravelAdviceAlerts::FEED_URL).to_return(body: json)
+          stub_request(:get, TravelAdviceAlerts::HEALTHCHECK_URL).to_return(body: json)
         end
 
         it 'requests based on the title attribute rather than the country name' do
@@ -58,9 +50,9 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
 
       context "when a travel advice item is updated but email has not been sent" do
         before do
-          json = File.read(File.dirname(__FILE__) + "/example_travel_alert_feed.json")
-          json = json.gsub('2016-03-30T12:24:46+00:00', '2016-03-31T15:24:46+00:00')
-          stub_request(:get, TravelAdviceAlerts::FEED_URL).to_return(body: json)
+          json = File.read(File.dirname(__FILE__) + "/example_travel_advice_publisher_healthcheck.json")
+          json = json.gsub('2016-03-30T12:24:46.000Z', '2016-03-31T15:24:46.000Z')
+          stub_request(:get, TravelAdviceAlerts::HEALTHCHECK_URL).to_return(body: json)
 
           stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages")
             .with(query: { q: '" 4:24pm, 31 March 2016" subject:"Albania travel advice" to:c@example.org' })

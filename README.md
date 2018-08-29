@@ -43,8 +43,8 @@ Both rake tasks will exit normally and not output anything if everything
 is OK.
 
 If they find that some alerts have not been sent out, they will print the
-missing alerts and exit with a non-zero exit code. When run by Icinga,
-this will alert developers.
+missing alerts and exit with a non-zero exit code. When reported to Icinga
+by Jenkins, this will alert developers.
 
 ### Running the test suite
 
