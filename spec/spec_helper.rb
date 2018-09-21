@@ -30,6 +30,6 @@ def set_credentials
   ENV['EMAILS_THAT_SHOULD_RECEIVE_TRAVEL_ADVICE_ALERTS'] = 'c@example.org'
 
   # the response there doesn't matter, as long as it's JSON.
-  stub_request(:post, "https://www.googleapis.com/oauth2/v4/token").
+  stub_request(:post, "https://oauth2.googleapis.com/token").
     to_return(body: "{}", headers: { "Content-Type" => "application/json" })
 end
