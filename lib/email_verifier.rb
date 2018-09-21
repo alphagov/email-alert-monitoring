@@ -1,6 +1,6 @@
-require_relative './inbox'
+require_relative "inbox"
 
-class AlertEmailVerifier
+class EmailVerifier
   attr_reader :missing_alerts, :emailed_alerts, :acknowledged_alerts
 
   ACKNOWLEDGED_EMAIL_CONTENTS = [

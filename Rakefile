@@ -50,9 +50,9 @@ task :get_oauth_token, [:auth_code] do |_t, args|
 end
 
 task :run do
-  require_relative "./lib/drug_alert_email_verifier"
+  require_relative "lib/email_verifier/medical_safety"
 
-  verifier = DrugAlertEmailVerifier.new
+  verifier = EmailVerifier::MedicalSafety.new
   TaskRunner.new.verify_with_retries(verifier: verifier) do
     if verifier.have_all_alerts_been_emailed?
       puts "All email alerts have been sent. Everything is okay!"
@@ -71,9 +71,9 @@ task :run do
 end
 
 task :run_travel_alerts do
-  require_relative "./lib/travel_advice_alert_email_verifier"
+  require_relative "lib/email_verifier/travel_advice"
 
-  verifier = TravelAdviceAlertEmailVerifier.new
+  verifier = EmailVerifier::TravelAdvice.new
   TaskRunner.new.verify_with_retries(verifier: verifier) do
     if verifier.have_all_alerts_been_emailed?
       puts "All travel advice email alerts have been sent. Everything is okay!"

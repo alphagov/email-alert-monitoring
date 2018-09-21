@@ -1,7 +1,7 @@
-require_relative "email_search/travel_advice"
-require_relative "./alert_email_verifier"
+require_relative "../email_search/travel_advice"
+require_relative "../email_verifier"
 
-class TravelAdviceAlertEmailVerifier < AlertEmailVerifier
+class EmailVerifier::TravelAdvice < EmailVerifier
   def latest_alert_contents
     EmailSearch::TravelAdvice.queries
   end

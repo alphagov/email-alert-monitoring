@@ -1,8 +1,8 @@
 require 'spec_helper'
 require 'timecop'
-require_relative './../../lib/travel_advice_alert_email_verifier'
+require_relative "../../lib/email_verifier/travel_advice"
 
-RSpec.describe TravelAdviceAlertEmailVerifier do
+RSpec.describe EmailVerifier::TravelAdvice do
   let(:verifier) { described_class.new.tap(&:run_report) }
 
   before do
