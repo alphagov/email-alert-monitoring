@@ -9,7 +9,7 @@ class DrugAlerts
   # lag between publication and emailing, only return the publications older
   # than an hour. This prevents false negatives.
   def latest_drug_alert_urls
-    open(FEED_URL) do |raw_rss|
+    URI.parse(FEED_URL).open do |raw_rss|
       RSS::Parser
         .parse(raw_rss)
         .items.first(NUMBER_OF_ITEMS)

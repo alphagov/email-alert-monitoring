@@ -11,7 +11,7 @@ class TravelAdviceAlerts
     # Extract the countries updated from two days to one hour ago.
     # Unlike with drug alerts, we expect multiple updates from the same set of
     # 225 countries, so search on update time + country rather than the linked url.
-    open(HEALTHCHECK_URL) do |raw_json|
+    URI.parse(HEALTHCHECK_URL).open do |raw_json|
       JSON.parse(raw_json.read)["editions"]
         .map { |json_entry| TravelAdviceEntry.new(json_entry) }
         .map(&:search_value)
