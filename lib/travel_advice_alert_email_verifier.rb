@@ -1,9 +1,9 @@
-require_relative "./travel_advice_alerts"
+require_relative "email_search/travel_advice"
 require_relative "./alert_email_verifier"
 
 class TravelAdviceAlertEmailVerifier < AlertEmailVerifier
   def latest_alert_contents
-    TravelAdviceAlerts.new.latest_travel_advice_alerts
+    EmailSearch::TravelAdvice.queries
   end
 
   def emails_that_should_have_received_alert

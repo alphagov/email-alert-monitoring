@@ -1,9 +1,9 @@
-require_relative './drug_alerts'
-require_relative './alert_email_verifier'
+require_relative "email_search/medical_safety"
+require_relative "./alert_email_verifier"
 
 class DrugAlertEmailVerifier < AlertEmailVerifier
   def latest_alert_contents
-    DrugAlerts.new.latest_drug_alert_urls
+    EmailSearch::MedicalSafety.queries
   end
 
   def emails_that_should_have_received_alert
