@@ -11,6 +11,7 @@ class EmailVerifier
     @emailed_alerts = []
     @acknowledged_alerts = []
     @missing_alerts = []
+    @inbox = Inbox.new
   end
 
   def have_all_alerts_been_emailed?
@@ -33,19 +34,13 @@ class EmailVerifier
 
 private
 
+  attr_reader :inbox
+
   def has_email_address_received_email_with_contents?(email:, contents:)
     inbox.message_count_for_query("#{contents} to:#{email}") != 0
   end
 
   def acknowledged_as_missing?(contents:)
     ACKNOWLEDGED_EMAIL_CONTENTS.include?(contents)
-  end
-
-  def inbox
-    @inbox ||= Inbox.new
-  end
-
-  def email_search_queries
-    []
   end
 end
