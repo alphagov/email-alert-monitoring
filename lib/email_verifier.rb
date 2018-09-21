@@ -18,14 +18,14 @@ class EmailVerifier
   end
 
   def run_report
-    latest_alert_contents.all? do |contents|
+    email_search_queries.all? do |email_search_query|
       emails_that_should_have_received_alert.all? do |email|
-        if has_email_address_received_email_with_contents?(email: email, contents: contents)
-          @emailed_alerts << [email, contents]
-        elsif acknowledged_as_missing?(contents: contents)
-          @acknowledged_alerts << [email, contents]
+        if has_email_address_received_email_with_contents?(email: email, contents: email_search_query)
+          @emailed_alerts << [email, email_search_query]
+        elsif acknowledged_as_missing?(contents: email_search_query)
+          @acknowledged_alerts << [email, email_search_query]
         else
-          @missing_alerts << [email, contents]
+          @missing_alerts << [email, email_search_query]
         end
       end
     end
@@ -34,8 +34,7 @@ class EmailVerifier
 private
 
   def has_email_address_received_email_with_contents?(email:, contents:)
-    count = inbox.message_count_for_query("#{contents} to:#{email}")
-    count != 0
+    inbox.message_count_for_query("#{contents} to:#{email}") != 0
   end
 
   def acknowledged_as_missing?(contents:)
@@ -46,7 +45,7 @@ private
     @inbox ||= Inbox.new
   end
 
-  def latest_alert_contents
+  def email_search_queries
     []
   end
 end

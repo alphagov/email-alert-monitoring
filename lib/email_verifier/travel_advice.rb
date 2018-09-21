@@ -2,7 +2,7 @@ require_relative "../email_search/travel_advice"
 require_relative "../email_verifier"
 
 class EmailVerifier::TravelAdvice < EmailVerifier
-  def latest_alert_contents
+  def email_search_queries
     EmailSearch::TravelAdvice.queries
   end
 

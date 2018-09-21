@@ -2,7 +2,7 @@ require_relative "../email_search/medical_safety"
 require_relative "../email_verifier"
 
 class EmailVerifier::MedicalSafety < EmailVerifier
-  def latest_alert_contents
+  def email_search_queries
     EmailSearch::MedicalSafety.queries
   end
 
