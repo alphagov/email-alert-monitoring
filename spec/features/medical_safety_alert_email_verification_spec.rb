@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative './../../lib/drug_alert_email_verifier'
+require_relative "../../lib/email_verifier/medical_safety"
 
 RSpec.describe "Drug email alert verifier" do
   it "Reports if all alerts have been sent via email" do
@@ -65,7 +65,7 @@ RSpec.describe "Drug email alert verifier" do
   end
 
   def when_the_verifier_is_run
-    @verifier = DrugAlertEmailVerifier.new
+    @verifier = EmailVerifier::MedicalSafety.new
     @verifier.run_report
   end
 

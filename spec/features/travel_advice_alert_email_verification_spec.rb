@@ -1,8 +1,8 @@
 require 'spec_helper'
 require 'timecop'
-require_relative './../../lib/travel_advice_alert_email_verifier'
+require_relative "../../lib/email_verifier/travel_advice"
 
-RSpec.describe TravelAdviceAlertEmailVerifier do
+RSpec.describe EmailVerifier::TravelAdvice do
   let(:verifier) { described_class.new.tap(&:run_report) }
 
   before do
@@ -16,7 +16,7 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
 
   context "when there are travel advice alerts updated between two days and one hour ago" do
     before do
-      stub_request(:get, TravelAdviceAlerts::HEALTHCHECK_URL).
+      stub_request(:get, EmailSearch::TravelAdvice::HEALTHCHECK_URL).
         to_return(body: File.read(File.dirname(__FILE__) + "/example_travel_advice_publisher_healthcheck.json"))
     end
 
@@ -36,7 +36,7 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
         before do
           json = File.read(File.dirname(__FILE__) + "/example_travel_advice_publisher_healthcheck.json")
           json = json.gsub('São Tomé and Principe travel advice', 'Sao Tome & Principe travel advice')
-          stub_request(:get, TravelAdviceAlerts::HEALTHCHECK_URL).to_return(body: json)
+          stub_request(:get, EmailSearch::TravelAdvice::HEALTHCHECK_URL).to_return(body: json)
         end
 
         it 'requests based on the title attribute rather than the country name' do
@@ -52,7 +52,7 @@ RSpec.describe TravelAdviceAlertEmailVerifier do
         before do
           json = File.read(File.dirname(__FILE__) + "/example_travel_advice_publisher_healthcheck.json")
           json = json.gsub('2016-03-30T12:24:46.000Z', '2016-03-31T15:24:46.000Z')
-          stub_request(:get, TravelAdviceAlerts::HEALTHCHECK_URL).to_return(body: json)
+          stub_request(:get, EmailSearch::TravelAdvice::HEALTHCHECK_URL).to_return(body: json)
 
           stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages")
             .with(query: { q: '" 4:24pm, 31 March 2016" subject:"Albania travel advice" to:c@example.org' })
