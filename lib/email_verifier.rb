@@ -5,6 +5,7 @@ class EmailVerifier
 
   ACKNOWLEDGED_EMAIL_CONTENTS = [
     %{subject:"Field Safety Notice - 02 to 06 April 2018"},
+    %{subject:"Imatinib 400mg Capsules (3 x 10)  PL 36390/0180 : Company-led Drug Alert"},
   ].freeze
 
   def initialize
