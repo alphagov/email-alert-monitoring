@@ -44,23 +44,28 @@ RSpec.describe "Drug email alert verifier" do
       to_return(body: rss)
   end
 
-  def and_emails_have_been_sent_for_all_alerts
-    %w[a@example.org b@example.org].each do |email|
-      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22An%20important%20alert%22%20to:#{email.gsub('+', '%2B')}").
-        to_return(body: { resultSizeEstimate: 1 }.to_json, headers: { "Content-Type" => "application/json" })
+  def stub_message_request(to_email:, from_email:, subject:, result:)
+    query = "subject:%22#{subject.gsub(' ', '%20')}%22%20from:#{from_email.gsub('+', '%2B')}%20to:#{to_email.gsub('+', '%2B')}"
 
-      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22Another%20important%20alert%22%20to:#{email.gsub('+', '%2B')}").
-        to_return(body: { resultSizeEstimate: 1 }.to_json, headers: { "Content-Type" => "application/json" })
+    stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=#{query}").
+      to_return(body: { resultSizeEstimate: result }.to_json, headers: { "Content-Type" => "application/json" })
+  end
+
+  def and_emails_have_been_sent_for_all_alerts
+    %w[a@example.org b@example.org].each do |to_email|
+      %w[c@example.org d@example.org].each do |from_email|
+        stub_message_request(subject: "An important alert", to_email: to_email, from_email: from_email, result: 1)
+        stub_message_request(subject: "Another important alert", to_email: to_email, from_email: from_email, result: 1)
+      end
     end
   end
 
   def and_no_emails_have_been_sent
-    %w[a@example.org b@example.org].each do |email|
-      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22An%20important%20alert%22%20to:#{email.gsub('+', '%2B')}").
-        to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { "Content-Type" => "application/json" })
-
-      stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=subject:%22Another%20important%20alert%22%20to:#{email.gsub('+', '%2B')}").
-        to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { "Content-Type" => "application/json" })
+    %w[a@example.org b@example.org].each do |to_email|
+      %w[c@example.org d@example.org].each do |from_email|
+        stub_message_request(subject: "An important alert", to_email: to_email, from_email: from_email, result: 0)
+        stub_message_request(subject: "Another important alert", to_email: to_email, from_email: from_email, result: 0)
+      end
     end
   end
 

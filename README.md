@@ -7,6 +7,14 @@ Currently the script looks at [drug and medical advice
 alerts](https://www.gov.uk/drug-device-alerts) and [foreign travel advice
 alerts](https://www.gov.uk/foreign-travel-advice).
 
+The `EMAIL_ADDRESSES_TO_CHECK` environment variable configures the email
+addresses which should be sending and receiving any emails. It should be set
+in this format:
+
+```
+<to_email_address_1>,<from_email_address_1>:<to_email_address_2>,<from_email_address_2>:...
+```
+
 ### Drug and medical advice alerts
 
 An email address has been subscribed to these alerts (via [the email signup page](https://www.gov.uk/drug-device-alerts/email-signup)).
@@ -15,10 +23,6 @@ Every hour, we look at [the public RSS feed for alerts](https://www.gov.uk/drug-
 email address has received an email for these publications via the
 [Google Gmail API](https://developers.google.com/gmail/api/).
 
-The `EMAILS_THAT_SHOULD_RECEIVE_DRUG_ALERTS` environment variable
-contains the email address that has been subscribed to receive these
-emails.
-
 ### Travel advice alerts
 
 An email address has been subscribed to these alerts (via [the email signup page](https://www.gov.uk/foreign-travel-advice/email-signup)).
@@ -26,10 +30,6 @@ An email address has been subscribed to these alerts (via [the email signup page
 Every hour, we look at [the content store feed for alerts](https://www.gov.uk/api/content/foreign-travel-advice). We then
 check the email address has received an email for these publications via
 the [Google Gmail API](https://developers.google.com/gmail/api/).
-
-The `EMAILS_THAT_SHOULD_RECEIVE_TRAVEL_ADVICE_ALERTS` environment
-variable contains the email address that has been subscribed to receive
-these emails.
 
 ## Technical documentation
 

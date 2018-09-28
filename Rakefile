@@ -57,12 +57,12 @@ task :run do
     if verifier.have_all_alerts_been_emailed?
       puts "All email alerts have been sent. Everything is okay!"
 
-      verifier.acknowledged_alerts.each do |email, url|
-        puts "#{email} has not received an email with #{url} but has been acknowledged"
+      verifier.acknowledged_alerts.each do |to_email, from_email, query|
+        puts "#{to_email} has not received an email from #{from_email} with #{query} but has been acknowledged"
       end
     else
-      verifier.missing_alerts.each do |email, url|
-        puts "#{email} has not received an email with #{url}"
+      verifier.missing_alerts.each do |to_email, from_email, query|
+        puts "#{to_email} has not received an email from #{from_email} with #{query}"
       end
 
       exit(2)
@@ -78,9 +78,9 @@ task :run_travel_alerts do
     if verifier.have_all_alerts_been_emailed?
       puts "All travel advice email alerts have been sent. Everything is okay!"
     else
-      verifier.missing_alerts.each do |email, result|
-        /subject:(.*)/.match(result) do |subject|
-          puts "#{email} has not received a travel advice alert email with a subject of #{subject[1]}"
+      verifier.missing_alerts.each do |to_email, from_email, query|
+        /subject:(.*)/.match(query) do |subject|
+          puts "#{to_email} has not received a travel advice alert email from #{from_email} with a subject of #{subject[1]}"
         end
       end
 
