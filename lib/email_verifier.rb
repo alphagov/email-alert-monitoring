@@ -4,8 +4,11 @@ class EmailVerifier
   attr_reader :missing_alerts, :emailed_alerts, :acknowledged_alerts
 
   ACKNOWLEDGED_EMAIL_CONTENTS = [
-    %{subject:"Field Safety Notice - 02 to 06 April 2018"},
     %{subject:"Imatinib 400mg Capsules (3 x 10)  PL 36390/0180 : Company-led Drug Alert"},
+    %{subject:"Field Safety Notice - 17 September to  21 September"},
+    %{subject:"Various trauma guide wires – risk of infection due to packaging failure (MDA/2018/032)"},
+    %{subject:"SureSigns VS & VM patient monitors and Viewing stations manufactured before May 2018: risk of batteries overheating or igniting (MDA/2018/031)"},
+    %{subject:"Flex connectors in Halyard Closed Suction Kits – risk of interruption of ventilation (MDA/2018/030)"},
   ].freeze
 
   def initialize
