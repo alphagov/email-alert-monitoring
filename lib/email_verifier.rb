@@ -9,6 +9,7 @@ class EmailVerifier
     %{subject:"Various trauma guide wires – risk of infection due to packaging failure (MDA/2018/032)"},
     %{subject:"SureSigns VS & VM patient monitors and Viewing stations manufactured before May 2018: risk of batteries overheating or igniting (MDA/2018/031)"},
     %{subject:"Flex connectors in Halyard Closed Suction Kits – risk of interruption of ventilation (MDA/2018/030)"},
+    %{subject:"Field safety notices - 26 to 30 November 2018"},
   ].freeze
 
   def initialize
