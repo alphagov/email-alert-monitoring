@@ -11,6 +11,7 @@ class EmailVerifier
     %{subject:"Flex connectors in Halyard Closed Suction Kits – risk of interruption of ventilation (MDA/2018/030)"},
     %{subject:"Field safety notices - 26 to 30 November 2018"},
     %{subject:"Field Safety Notice - 19 November to 23 November 2018"},
+    %{subject:"Implantable cardiac pacemakers: specific brands of dual chamber pacemakers - risk of syncope due to pause in pacing therapy (MDA/2019/008)"},
   ].freeze
 
   def initialize
