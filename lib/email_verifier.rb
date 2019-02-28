@@ -12,6 +12,7 @@ class EmailVerifier
     %{subject:"Field safety notices - 26 to 30 November 2018"},
     %{subject:"Field Safety Notice - 19 November to 23 November 2018"},
     %{subject:"Implantable cardiac pacemakers: specific brands of dual chamber pacemakers - risk of syncope due to pause in pacing therapy (MDA/2019/008)"},
+    %{subject:"Drug Alert Class 4: Paracetamol Infusion, Accord. (MDR 07-02/19)"}
   ].freeze
 
   def initialize
