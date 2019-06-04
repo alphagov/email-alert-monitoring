@@ -15,7 +15,7 @@ class EmailVerifier
     %{subject:"Drug Alert Class 4: Paracetamol Infusion, Accord. (MDR 07-02/19)"},
     %{subject:"Field Safety Notice: 8 to 12 April 2019"},
     %{subject:"Field Safety Notice: 15 to 19 April 2019"},
-    %{subject:"Aisys and Aisys CS2 anaesthesia devices with Et Control option and software versions 11, 11SP01 and 11SP02 – risk of patient awareness due to inadequate anaesthesia"}
+    %{subject:"Aisys and Aisys CS2 anaesthesia devices with Et Control option and software versions 11, 11SP01 and 11SP02 – risk of patient awareness due to inadequate anaesthesia (MDA/2019/022)"}
   ].freeze
 
   def initialize
