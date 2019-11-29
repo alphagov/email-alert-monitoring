@@ -16,7 +16,8 @@ class EmailVerifier
     %{subject:"Field Safety Notice: 8 to 12 April 2019"},
     %{subject:"Field Safety Notice: 15 to 19 April 2019"},
     %{subject:"Aisys and Aisys CS2 anaesthesia devices with Et Control option and software versions 11, 11SP01 and 11SP02 – risk of patient awareness due to inadequate anaesthesia (MDA/2019/022)"},
-    %{subject:"Professional use defibrillator/monitor: Efficia DFM100 (Model number 866199)  – risk of failure to switch on or unexpected restart (MDA/2019/039)"}
+    %{subject:"Professional use defibrillator/monitor: Efficia DFM100 (Model number 866199)  – risk of failure to switch on or unexpected restart (MDA/2019/039)"},
+    %{subject:"Class 2 Medicines recall: Emerade 150, 300 and 500 microgram solution for injection in pre-filled syringe (EL(19)A/39)"}
   ].freeze
 
   def initialize
