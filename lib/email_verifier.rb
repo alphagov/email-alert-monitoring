@@ -18,7 +18,8 @@ class EmailVerifier
     %{subject:"Aisys and Aisys CS2 anaesthesia devices with Et Control option and software versions 11, 11SP01 and 11SP02 – risk of patient awareness due to inadequate anaesthesia (MDA/2019/022)"},
     %{subject:"Professional use defibrillator/monitor: Efficia DFM100 (Model number 866199)  – risk of failure to switch on or unexpected restart (MDA/2019/039)"},
     %{subject:"Class 2 Medicines recall: Emerade 150, 300 and 500 microgram solution for injection in pre-filled syringe (EL(19)A/39)"},
-    %{subject:"Professional use defibrillator/monitor: all HeartStart XL+ (Model number 861290) - risk of failure to deliver therapy (MDA/2020/003)"}
+    %{subject:"Professional use defibrillator/monitor: all HeartStart XL+ (Model number 861290) - risk of failure to deliver therapy (MDA/2020/003)"},
+    %{subject:"Company led drug alert – Iohexol 350mg/ml and 300 mg I/ml solution for injection (CLDA (20)A/01)"}
   ].freeze
 
   def initialize
