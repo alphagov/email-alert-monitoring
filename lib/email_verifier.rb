@@ -19,7 +19,8 @@ class EmailVerifier
     %{subject:"Professional use defibrillator/monitor: Efficia DFM100 (Model number 866199)  – risk of failure to switch on or unexpected restart (MDA/2019/039)"},
     %{subject:"Class 2 Medicines recall: Emerade 150, 300 and 500 microgram solution for injection in pre-filled syringe (EL(19)A/39)"},
     %{subject:"Professional use defibrillator/monitor: all HeartStart XL+ (Model number 861290) - risk of failure to deliver therapy (MDA/2020/003)"},
-    %{subject:"Company led drug alert – Iohexol solution for injection (350mg/ml and 300 mgI/ml)"}
+    %{subject:"Company led drug alert – Iohexol solution for injection (350mg/ml and 300 mgI/ml)"},
+    %{subject:"Class 4 Medicines Defect Information: Memantine 10mg Film-Coated Tablets, PL 20416/0260, (EL (20)A/11)"},
   ].freeze
 
   def initialize
