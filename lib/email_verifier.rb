@@ -21,6 +21,7 @@ class EmailVerifier
     %{subject:"Professional use defibrillator/monitor: all HeartStart XL+ (Model number 861290) - risk of failure to deliver therapy (MDA/2020/003)"},
     %{subject:"Company led drug alert – Iohexol solution for injection (350mg/ml and 300 mgI/ml)"},
     %{subject:"Class 4 Medicines Defect Information: Memantine 10mg Film-Coated Tablets, PL 20416/0260, (EL (20)A/11)"},
+    %{subject:"All T34 and T34L (T60) ambulatory syringe pumps – check pumps before each use due to risk of under-infusion and no alarm (MDA/2020/007)"},
   ].freeze
 
   def initialize
