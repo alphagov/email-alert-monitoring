@@ -22,6 +22,7 @@ class EmailVerifier
     %{subject:"Company led drug alert – Iohexol solution for injection (350mg/ml and 300 mgI/ml)"},
     %{subject:"Class 4 Medicines Defect Information: Memantine 10mg Film-Coated Tablets, PL 20416/0260, (EL (20)A/11)"},
     %{subject:"All T34 and T34L (T60) ambulatory syringe pumps – check pumps before each use due to risk of under-infusion and no alarm (MDA/2020/007)"},
+    %{subject:"Various Olympus duodenoscope models: do not use if elevator wires are frayed or damaged as these may cause lacerations to patients and users (MDA/2020/008) "},
   ].freeze
 
   def initialize
