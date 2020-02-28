@@ -21,7 +21,7 @@ node {
     }
 
     stage("Lint Ruby") {
-      govuk.rubyLinter("app lib spec test")
+      govuk.lintRuby("app lib spec test")
     }
 
     stage("Run tests") {
