@@ -1,5 +1,5 @@
 require "spec_helper"
-require_relative './../../lib/task_runner'
+require_relative "./../../lib/task_runner"
 
 RSpec.describe TaskRunner do
   describe "#verify_with_retries" do
