@@ -27,11 +27,7 @@ task default: %i[spec]
 
 # OAuth step 1: get the URL to visit for authorisation
 task :get_oauth_url do
-  auth_client = google_auth_client(
-    {
-      "access_type" => "offline",
-    }
-  )
+  auth_client = google_auth_client("access_type" => "offline")
   puts auth_client.authorization_uri
 end
 
