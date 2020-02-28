@@ -43,7 +43,7 @@ RSpec.describe EmailVerifier::TravelAdvice do
           expect(verifier.have_all_alerts_been_emailed?).to eql(true)
           expect(
             a_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages").
-            with(query: { q: '" 3:57pm, 31 March 2016" subject:"Sao Tome & Principe travel advice" from:c@example.org to:a@example.org' })
+            with(query: { q: '" 3:57pm, 31 March 2016" subject:"Sao Tome & Principe travel advice" from:c@example.org to:a@example.org' }),
           ).to have_been_made
         end
       end

@@ -18,7 +18,7 @@ def google_auth_client(additional_parameters = nil)
   auth_client.update!(
     scope: "https://www.googleapis.com/auth/gmail.readonly",
     redirect_uri: "http://localhost/oauth",
-    additional_parameters: additional_parameters
+    additional_parameters: additional_parameters,
   )
   auth_client
 end

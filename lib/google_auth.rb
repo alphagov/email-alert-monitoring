@@ -15,13 +15,13 @@ class GoogleAuth
       "installed" => {
         "client_id" => ENV.fetch("GOOGLE_CLIENT_ID"),
         "client_secret" => ENV.fetch("GOOGLE_CLIENT_SECRET"),
-      }
+      },
     )
 
     authorizer = Google::Auth::UserAuthorizer.new(
       client_id,
       Google::Apis::GmailV1::AUTH_GMAIL_READONLY,
-      DummyEnvironmentTokenStore.new
+      DummyEnvironmentTokenStore.new,
     )
 
     authorizer.get_credentials("default")
