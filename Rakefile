@@ -29,7 +29,7 @@ task default: %i[spec]
 task :get_oauth_url do
   auth_client = google_auth_client(
     {
-      "access_type" => "offline"
+      "access_type" => "offline",
     }
   )
   puts auth_client.authorization_uri
