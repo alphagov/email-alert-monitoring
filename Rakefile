@@ -23,11 +23,7 @@ def google_auth_client(additional_parameters = nil)
   auth_client
 end
 
-task default: %i[spec lint]
-
-task :lint do
-  sh "bundle exec govuk-lint-ruby --format clang lib spec Gemfile"
-end
+task default: %i[spec]
 
 # OAuth step 1: get the URL to visit for authorisation
 task :get_oauth_url do
