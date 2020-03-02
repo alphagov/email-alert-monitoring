@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 require_relative "../../lib/email_verifier/medical_safety"
 
 RSpec.describe "Drug email alert verifier" do

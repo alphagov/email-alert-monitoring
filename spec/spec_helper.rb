@@ -1,4 +1,4 @@
-require 'webmock/rspec'
+require "webmock/rspec"
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -15,7 +15,7 @@ RSpec.configure do |config|
   config.disable_monkey_patching!
 
   if config.files_to_run.one?
-    config.default_formatter = 'doc'
+    config.default_formatter = "doc"
   end
 
   config.order = :random
@@ -23,10 +23,10 @@ RSpec.configure do |config|
 end
 
 def set_credentials
-  ENV['GOOGLE_OAUTH_CREDENTIALS'] = '{"client_id":"my-google-client-id","access_token":"my-access-token","refresh_token":"my-refresh-token","scope":["https://www.googleapis.com/auth/gmail.readonly"],"expiration_time_millis":1454336608000}'
-  ENV['GOOGLE_CLIENT_ID'] = 'my-google-client-id'
-  ENV['GOOGLE_CLIENT_SECRET'] = 'my-google-client-secret'
-  ENV['EMAIL_ADDRESSES_TO_CHECK'] = 'a@example.org,c@example.org:b@example.org,d@example.org'
+  ENV["GOOGLE_OAUTH_CREDENTIALS"] = '{"client_id":"my-google-client-id","access_token":"my-access-token","refresh_token":"my-refresh-token","scope":["https://www.googleapis.com/auth/gmail.readonly"],"expiration_time_millis":1454336608000}'
+  ENV["GOOGLE_CLIENT_ID"] = "my-google-client-id"
+  ENV["GOOGLE_CLIENT_SECRET"] = "my-google-client-secret"
+  ENV["EMAIL_ADDRESSES_TO_CHECK"] = "a@example.org,c@example.org:b@example.org,d@example.org"
 
   # the response there doesn't matter, as long as it's JSON.
   stub_request(:post, "https://oauth2.googleapis.com/token").
