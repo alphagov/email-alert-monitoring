@@ -47,7 +47,7 @@ RSpec.describe "Drug email alert verifier" do
   def stub_message_request(to_email:, from_email:, subject:, result:)
     query = "subject:%22#{subject.gsub(' ', '%20')}%22%20from:#{from_email.gsub('+', '%2B')}%20to:#{to_email.gsub('+', '%2B')}"
 
-    stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?q=#{query}").
+    stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?maxResults=10000&q=#{query}").
       to_return(body: { resultSizeEstimate: result }.to_json, headers: { "Content-Type" => "application/json" })
   end
 

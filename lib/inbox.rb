@@ -8,7 +8,7 @@ class Inbox
 private
 
   def messages_for_query(query)
-    service.list_user_messages("me", q: query)
+    service.list_user_messages("me", q: query, max_results: 10000)
   end
 
   def service
