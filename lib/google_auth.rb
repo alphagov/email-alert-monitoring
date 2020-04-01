@@ -3,9 +3,12 @@ require "google/apis/gmail_v1"
 
 class GoogleAuth
   def self.service
+    Google::Apis.logger.level = Logger::DEBUG
     service = Google::Apis::GmailV1::GmailService.new
-    service.client_options.application_name = "GOV.UK Email monitoring service"
-    service.request_options.retries = 3
+    service.client_options.application_name = "GOV.UK Email monitoring service 2"
+    service.client_options.open_timeout_sec = 1
+    service.client_options.read_timeout_sec = 1
+    service.request_options.retries = 15
     service.authorization = get_credentials
     service
   end
