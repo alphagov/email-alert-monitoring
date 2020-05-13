@@ -23,7 +23,12 @@ def google_auth_client(additional_parameters = nil)
   auth_client
 end
 
-task default: %i[spec]
+desc "RuboCop"
+task :lint do
+  sh "bundle exec rubocop --format clang"
+end
+
+task default: %i[lint spec]
 
 desc "OAuth step 1: get the URL to visit for authorisation"
 task :get_oauth_url do
