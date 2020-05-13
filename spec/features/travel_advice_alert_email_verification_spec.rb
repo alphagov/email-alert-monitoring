@@ -16,8 +16,8 @@ RSpec.describe EmailVerifier::TravelAdvice do
 
   context "when there are travel advice alerts updated between two days and one hour ago" do
     before do
-      stub_request(:get, EmailSearch::TravelAdvice::HEALTHCHECK_URL).
-        to_return(body: File.read(File.dirname(__FILE__) + "/example_travel_advice_publisher_healthcheck.json"))
+      stub_request(:get, EmailSearch::TravelAdvice::HEALTHCHECK_URL)
+        .to_return(body: File.read(File.dirname(__FILE__) + "/example_travel_advice_publisher_healthcheck.json"))
     end
 
     context "when all emails are sent" do
@@ -42,8 +42,8 @@ RSpec.describe EmailVerifier::TravelAdvice do
         it "requests based on the title attribute rather than the country name" do
           expect(verifier.have_all_alerts_been_emailed?).to eql(true)
           expect(
-            a_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages").
-            with(query: { q: '" 3:57pm, 31 March 2016" subject:"Sao Tome & Principe travel advice" from:c@example.org to:a@example.org', maxResults: "10000" }),
+            a_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages")
+            .with(query: { q: '" 3:57pm, 31 March 2016" subject:"Sao Tome & Principe travel advice" from:c@example.org to:a@example.org', maxResults: "10000" }),
           ).to have_been_made
         end
       end

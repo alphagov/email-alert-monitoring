@@ -15,7 +15,7 @@ module EmailSearch
           .parse(raw_rss)
           .items.first(NUMBER_OF_ITEMS)
           .select { |entry| entry.updated.content < Time.now - 3600 }
-          .map { |entry| %{subject:"#{entry.title.content}"} }
+          .map { |entry| %(subject:"#{entry.title.content}") }
       end
     end
   end

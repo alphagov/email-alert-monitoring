@@ -25,14 +25,13 @@ end
 
 task default: %i[spec]
 
-# OAuth step 1: get the URL to visit for authorisation
+desc "OAuth step 1: get the URL to visit for authorisation"
 task :get_oauth_url do
   auth_client = google_auth_client("access_type" => "offline")
   puts auth_client.authorization_uri
 end
 
-# OAuth step 2: extract the code from the callback URL and use
-# to get the OAuth token
+desc "OAuth step 2: extract the code from the callback URL and use to get the OAuth token"
 task :get_oauth_token, [:auth_code] do |_t, args|
   auth_client = google_auth_client
   auth_client.code = args[:auth_code]
@@ -41,6 +40,7 @@ task :get_oauth_token, [:auth_code] do |_t, args|
   puts auth_client.to_json
 end
 
+desc "Run the script to monitor the medical safety inbox"
 task :run do
   require_relative "lib/email_verifier/medical_safety"
 
@@ -62,6 +62,7 @@ task :run do
   end
 end
 
+desc "Run the script to monitor the travel advice inbox"
 task :run_travel_alerts do
   require_relative "lib/email_verifier/travel_advice"
 
