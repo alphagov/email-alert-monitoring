@@ -29,6 +29,6 @@ def set_credentials
   ENV["EMAIL_ADDRESSES_TO_CHECK"] = "a@example.org,c@example.org:b@example.org,d@example.org"
 
   # the response there doesn't matter, as long as it's JSON.
-  stub_request(:post, "https://oauth2.googleapis.com/token").
-    to_return(body: "{}", headers: { "Content-Type" => "application/json" })
+  stub_request(:post, "https://oauth2.googleapis.com/token")
+    .to_return(body: "{}", headers: { "Content-Type" => "application/json" })
 end
