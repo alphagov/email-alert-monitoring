@@ -23,6 +23,9 @@ class EmailVerifier
     %{subject:"Class 4 Medicines Defect Information: Memantine 10mg Film-Coated Tablets, PL 20416/0260, (EL (20)A/11)"},
     %{subject:"All T34 and T34L (T60) ambulatory syringe pumps – check pumps before each use due to risk of under-infusion and no alarm (MDA/2020/007)"},
     %{subject:"Various Olympus duodenoscope models: do not use if elevator wires are frayed or damaged as these may cause lacerations to patients and users (MDA/2020/008) "},
+    %(" 2:21pm, 8 June 2020" subject:"South Sudan travel advice"),
+    %(" 2:20pm, 8 June 2020" subject:"Venezuela travel advice"),
+    %(" 2:19pm, 8 June 2020" subject:"Uruguay travel advice"),
   ].freeze
 
   def initialize
