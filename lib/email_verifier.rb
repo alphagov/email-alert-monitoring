@@ -4,6 +4,7 @@ class EmailVerifier
   attr_reader :missing_alerts, :emailed_alerts, :acknowledged_alerts
 
   ACKNOWLEDGED_EMAIL_CONTENTS = [
+    %{subject:"Philips sterilizable defibrillator internal paddles (specific models) – may fail to deliver therapy if pre-use checks are not followed (MDA/2020/022)"},
     %{subject:"Imatinib 400mg Capsules (3 x 10)  PL 36390/0180 : Company-led Drug Alert"},
     %(subject:"Field Safety Notice - 17 September to  21 September"),
     %{subject:"Various trauma guide wires – risk of infection due to packaging failure (MDA/2018/032)"},
