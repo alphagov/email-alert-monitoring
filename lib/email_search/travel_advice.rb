@@ -13,7 +13,7 @@ module EmailSearch
     end
 
     def queries
-      # Extract the countries updated from two days to one hour ago.
+      # Extract the countries updated from two days to 150 minutes ago.
       # Unlike with drug alerts, we expect multiple updates from the same set of
       # 225 countries, so search on update time + country rather than the linked url.
       URI.parse(HEALTHCHECK_URL).open do |raw_json|
