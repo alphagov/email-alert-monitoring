@@ -46,7 +46,7 @@ task :get_oauth_token, [:auth_code] do |_t, args|
 end
 
 desc "Run the script to monitor the medical safety inbox"
-task :run do
+task :run_medical_alerts do
   require_relative "lib/email_verifier/medical_safety"
 
   verifier = EmailVerifier::MedicalSafety.new

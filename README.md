@@ -31,7 +31,7 @@ the [Google Gmail API](https://developers.google.com/gmail/api/).
 
 ### Running
 
-`bundle exec rake run` for the medical safety alert checker
+`bundle exec rake run_medical_alerts` for the medical safety alert checker
 
 `bundle exec rake run_travel_alerts` for the travel advice alert checker
 
