@@ -29,7 +29,7 @@ RSpec.describe EmailVerifier::TravelAdvice do
 
       it "reports that all items have been sent via email" do
         expect(verifier.have_all_alerts_been_emailed?).to be true
-        expect(verifier.emailed_alerts.length).to eql(12)
+        expect(verifier.emailed_alerts.length).to eql(6)
       end
 
       context "when the subject of travel advice doesn't match the country name" do
@@ -43,7 +43,12 @@ RSpec.describe EmailVerifier::TravelAdvice do
           expect(verifier.have_all_alerts_been_emailed?).to eql(true)
           expect(
             a_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages")
-            .with(query: { q: '" 3:57pm, 31 March 2016" subject:"Sao Tome & Principe travel advice" from:c@example.org to:a@example.org', maxResults: "10000" }),
+            .with(
+              query: {
+                q: "\" 3:57pm, 31 March 2016\" subject:\"Sao Tome & Principe travel advice\" from:#{EmailVerifier::FROM_EMAIL} to:#{EmailVerifier::TO_EMAIL}",
+                maxResults: "10000",
+              },
+            ),
           ).to have_been_made
         end
       end
@@ -55,7 +60,12 @@ RSpec.describe EmailVerifier::TravelAdvice do
           stub_request(:get, EmailSearch::TravelAdvice::HEALTHCHECK_URL).to_return(body: json)
 
           stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages")
-            .with(query: { q: '" 4:24pm, 31 March 2016" subject:"Albania travel advice" from:c@example.org to:a@example.org', maxResults: "10000" })
+            .with(
+              query: {
+                q: "\" 4:24pm, 31 March 2016\" subject:\"Albania travel advice\" from:#{EmailVerifier::FROM_EMAIL} to:#{EmailVerifier::TO_EMAIL}",
+                maxResults: "10000",
+              },
+            )
             .to_return(body: { resultSizeEstimate: 0 }.to_json, headers: { "Content-Type" => "application/json" })
         end
 
@@ -75,7 +85,7 @@ RSpec.describe EmailVerifier::TravelAdvice do
 
       it "reports that no alerts have been sent" do
         expect(verifier.have_all_alerts_been_emailed?).to eql(false)
-        expect(verifier.missing_alerts.size).to eql(12)
+        expect(verifier.missing_alerts.size).to eql(6)
       end
     end
   end
