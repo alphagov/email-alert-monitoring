@@ -66,6 +66,10 @@ task :run_medical_alerts do
     end
   end
 end
+desc "Run the script to monitor the medical safety inbox"
+task :run do
+  Rake::Task["run_medical_alerts"].invoke
+end
 
 desc "Run the script to monitor the travel advice inbox"
 task :run_travel_alerts do
