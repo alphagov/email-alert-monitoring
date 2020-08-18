@@ -3,6 +3,8 @@ require_relative "inbox"
 class EmailVerifier
   attr_reader :missing_alerts, :emailed_alerts, :acknowledged_alerts
 
+  TO_EMAIL = "govuk_email_check@digital.cabinet-office.gov.uk".freeze
+  FROM_EMAIL = "gov.uk.email@notifications.service.gov.uk".freeze
   ACKNOWLEDGED_EMAIL_CONTENTS = [
     %{subject:"Philips sterilizable defibrillator internal paddles (specific models) – may fail to deliver therapy if pre-use checks are not followed (MDA/2020/022)"},
     %{subject:"Imatinib 400mg Capsules (3 x 10)  PL 36390/0180 : Company-led Drug Alert"},
@@ -42,14 +44,12 @@ class EmailVerifier
 
   def run_report
     email_search_queries.all? do |email_search_query|
-      email_addresses_to_check.all? do |to_email, from_email|
-        if has_email_address_received_email_with_contents?(to: to_email, from: from_email, contents: email_search_query)
-          @emailed_alerts << [to_email, from_email, email_search_query]
-        elsif acknowledged_as_missing?(contents: email_search_query)
-          @acknowledged_alerts << [to_email, from_email, email_search_query]
-        else
-          @missing_alerts << [to_email, from_email, email_search_query]
-        end
+      if has_email_address_received_email_with_contents?(contents: email_search_query)
+        @emailed_alerts << [TO_EMAIL, FROM_EMAIL, email_search_query]
+      elsif acknowledged_as_missing?(contents: email_search_query)
+        @acknowledged_alerts << [TO_EMAIL, FROM_EMAIL, email_search_query]
+      else
+        @missing_alerts << [TO_EMAIL, FROM_EMAIL, email_search_query]
       end
     end
   end
@@ -58,19 +58,13 @@ private
 
   attr_reader :inbox
 
-  def has_email_address_received_email_with_contents?(to:, from:, contents:)
-    query = "#{contents} from:#{from} to:#{to}"
+  def has_email_address_received_email_with_contents?(contents:)
+    query = "#{contents} from:#{FROM_EMAIL} to:#{TO_EMAIL}"
     result = inbox.message_count_for_query(query)
     result != 0
   end
 
   def acknowledged_as_missing?(contents:)
     ACKNOWLEDGED_EMAIL_CONTENTS.include?(contents)
-  end
-
-  def email_addresses_to_check
-    ENV.fetch("EMAIL_ADDRESSES_TO_CHECK").split(":").map do |token|
-      token.split(",")
-    end
   end
 end

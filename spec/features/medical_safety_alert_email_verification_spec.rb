@@ -2,7 +2,7 @@ require "spec_helper"
 require_relative "../../lib/email_verifier/medical_safety"
 
 RSpec.describe "Drug email alert verifier" do
-  it "Reports if all alerts have been sent via email" do
+  it "reports if all alerts have been sent via email" do
     given_credentials_for_the_google_api_have_been_set
     and_there_are_drug_advice_alerts
     and_emails_have_been_sent_for_all_alerts
@@ -10,7 +10,7 @@ RSpec.describe "Drug email alert verifier" do
     then_it_reports_that_all_emails_have_been_sent
   end
 
-  it "Reports if there is an alert that has not been sent" do
+  it "reports if there is an alert that has not been sent" do
     given_credentials_for_the_google_api_have_been_set
     and_there_are_drug_advice_alerts
     and_no_emails_have_been_sent
@@ -18,7 +18,7 @@ RSpec.describe "Drug email alert verifier" do
     then_it_reports_that_an_email_is_missing
   end
 
-  it "Ignores very new alerts" do
+  it "ignores very new alerts" do
     given_credentials_for_the_google_api_have_been_set
     and_there_is_a_drug_advice_alert_published_very_recently
     and_no_emails_have_been_sent
@@ -44,29 +44,21 @@ RSpec.describe "Drug email alert verifier" do
       .to_return(body: rss)
   end
 
-  def stub_message_request(to_email:, from_email:, subject:, result:)
-    query = "subject:%22#{subject.gsub(' ', '%20')}%22%20from:#{from_email.gsub('+', '%2B')}%20to:#{to_email.gsub('+', '%2B')}"
+  def stub_message_request(subject:, result:)
+    query = "subject:%22#{subject.gsub(' ', '%20')}%22%20from:#{EmailVerifier::FROM_EMAIL.gsub('+', '%2B')}%20to:#{EmailVerifier::TO_EMAIL.gsub('+', '%2B')}"
 
     stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?maxResults=10000&q=#{query}")
       .to_return(body: { resultSizeEstimate: result }.to_json, headers: { "Content-Type" => "application/json" })
   end
 
   def and_emails_have_been_sent_for_all_alerts
-    %w[a@example.org b@example.org].each do |to_email|
-      %w[c@example.org d@example.org].each do |from_email|
-        stub_message_request(subject: "An important alert", to_email: to_email, from_email: from_email, result: 1)
-        stub_message_request(subject: "Another important alert", to_email: to_email, from_email: from_email, result: 1)
-      end
-    end
+    stub_message_request(subject: "An important alert", result: 1)
+    stub_message_request(subject: "Another important alert", result: 1)
   end
 
   def and_no_emails_have_been_sent
-    %w[a@example.org b@example.org].each do |to_email|
-      %w[c@example.org d@example.org].each do |from_email|
-        stub_message_request(subject: "An important alert", to_email: to_email, from_email: from_email, result: 0)
-        stub_message_request(subject: "Another important alert", to_email: to_email, from_email: from_email, result: 0)
-      end
-    end
+    stub_message_request(subject: "An important alert", result: 0)
+    stub_message_request(subject: "Another important alert", result: 0)
   end
 
   def when_the_verifier_is_run
@@ -80,6 +72,6 @@ RSpec.describe "Drug email alert verifier" do
 
   def then_it_reports_that_an_email_is_missing
     expect(@verifier.have_all_alerts_been_emailed?).to eql(false)
-    expect(@verifier.missing_alerts.size).to eql(4)
+    expect(@verifier.missing_alerts.size).to eql(2)
   end
 end
