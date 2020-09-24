@@ -6,7 +6,7 @@ class EmailVerifier
   TO_EMAIL = "govuk_email_check@digital.cabinet-office.gov.uk".freeze
   FROM_EMAIL = "gov.uk.email@notifications.service.gov.uk".freeze
   ACKNOWLEDGED_EMAIL_CONTENTS = [
-    %{subject:"National Patient Safety Alert: Philips Respironics V60 ventilator – unexpected shutdown (NatPSA/2020/007/MHRA)"},
+    %{subject:"National Patient Safety Alert: Philips Respironics V60 ventilator - unexpected shutdown (NatPSA/2020/007/MHRA) "},
     %{subject:"Philips sterilizable defibrillator internal paddles (specific models) – may fail to deliver therapy if pre-use checks are not followed (MDA/2020/022)"},
     %{subject:"Imatinib 400mg Capsules (3 x 10)  PL 36390/0180 : Company-led Drug Alert"},
     %(subject:"Field Safety Notice - 17 September to  21 September"),
