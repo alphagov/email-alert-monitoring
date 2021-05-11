@@ -31,6 +31,7 @@ class EmailVerifier
     %(" 2:21pm, 8 June 2020" subject:"South Sudan travel advice"),
     %(" 2:20pm, 8 June 2020" subject:"Venezuela travel advice"),
     %(" 2:19pm, 8 June 2020" subject:"Uruguay travel advice"),
+    %(subject:"Field Safety Notices: 3 to 7 May 2021"),
   ].freeze
 
   def initialize
