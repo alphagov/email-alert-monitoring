@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gem "google-api-client", "~> 0.20"
 gem "rake", "~> 12.3"
-gem "tzinfo", "~> 1.2"
+gem "tzinfo"
 
 gem "govuk_app_config"
 gem "plek", "~> 2.1"
