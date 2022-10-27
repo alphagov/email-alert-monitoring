@@ -32,11 +32,11 @@ RSpec.describe "Drug email alert verifier" do
 
   def and_there_are_drug_advice_alerts
     stub_request(:get, "https://www.gov.uk/drug-device-alerts.atom")
-      .to_return(body: File.read(File.dirname(__FILE__) + "/example_rss_feed.xml"))
+      .to_return(body: File.read("#{File.dirname(__FILE__)}/example_rss_feed.xml"))
   end
 
   def and_there_is_a_drug_advice_alert_published_very_recently
-    rss = File.read(File.dirname(__FILE__) + "/example_rss_feed.xml")
+    rss = File.read("#{File.dirname(__FILE__)}/example_rss_feed.xml")
 
     rss = rss.gsub("2016-02-01T12:58:40+00:00", Time.now.iso8601)
 

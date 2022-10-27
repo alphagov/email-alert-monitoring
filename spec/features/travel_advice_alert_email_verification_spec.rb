@@ -17,7 +17,7 @@ RSpec.describe EmailVerifier::TravelAdvice do
   context "when there are travel advice alerts updated between two days and one hour ago" do
     before do
       stub_request(:get, EmailSearch::TravelAdvice::HEALTHCHECK_URL)
-        .to_return(body: File.read(File.dirname(__FILE__) + "/example_travel_advice_publisher_healthcheck.json"))
+        .to_return(body: File.read("#{File.dirname(__FILE__)}/example_travel_advice_publisher_healthcheck.json"))
     end
 
     context "when all emails are sent" do
@@ -34,7 +34,7 @@ RSpec.describe EmailVerifier::TravelAdvice do
 
       context "when the subject of travel advice doesn't match the country name" do
         before do
-          json = File.read(File.dirname(__FILE__) + "/example_travel_advice_publisher_healthcheck.json")
+          json = File.read("#{File.dirname(__FILE__)}/example_travel_advice_publisher_healthcheck.json")
           json = json.gsub("São Tomé and Principe travel advice", "Sao Tome & Principe travel advice")
           stub_request(:get, EmailSearch::TravelAdvice::HEALTHCHECK_URL).to_return(body: json)
         end
@@ -55,7 +55,7 @@ RSpec.describe EmailVerifier::TravelAdvice do
 
       context "when a travel advice item is updated but email has not been sent" do
         before do
-          json = File.read(File.dirname(__FILE__) + "/example_travel_advice_publisher_healthcheck.json")
+          json = File.read("#{File.dirname(__FILE__)}/example_travel_advice_publisher_healthcheck.json")
           json = json.gsub("2016-03-30T12:24:46.000Z", "2016-03-31T15:24:46.000Z")
           stub_request(:get, EmailSearch::TravelAdvice::HEALTHCHECK_URL).to_return(body: json)
 
