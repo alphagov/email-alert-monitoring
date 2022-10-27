@@ -16,7 +16,7 @@ def google_auth_client(additional_parameters = nil)
   client_secrets = Google::APIClient::ClientSecrets.load("client_secrets.json")
   auth_client = client_secrets.to_authorization
   auth_client.update!(
-    scope: "https://www.googleapis.com/auth/gmail.readonly",
+    scope: "https://gmail.googleapis.com/auth/gmail.readonly",
     redirect_uri: "http://localhost/oauth",
     additional_parameters:,
   )
