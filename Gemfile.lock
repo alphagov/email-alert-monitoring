@@ -162,6 +162,8 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
     rspec-support (3.12.0)
+    rss (0.2.9)
+      rexml
     rubocop (1.37.1)
       json (~> 2.3)
       parallel (~> 1.10)
@@ -231,6 +233,7 @@ DEPENDENCIES
   pry-byebug
   rake
   rspec
+  rss
   rubocop-govuk
   timecop
   tzinfo
