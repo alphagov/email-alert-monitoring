@@ -14,7 +14,7 @@ RSpec.describe TaskRunner do
         @verified = false
 
         def run_verify_with_retries
-          TaskRunner.new.verify_with_retries(retries: 3, verifier:) do
+          TaskRunner.new.verify_with_retries(retries: 3, verifier: verifier) do
             @verified = true
           end
         end
@@ -33,7 +33,7 @@ RSpec.describe TaskRunner do
         expect(GovukError).to_not receive(:notify)
         verified = false
 
-        TaskRunner.new.verify_with_retries(retries: 3, verifier:) do
+        TaskRunner.new.verify_with_retries(retries: 3, verifier: verifier) do
           verified = true
         end
 

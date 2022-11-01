@@ -23,7 +23,7 @@ RSpec.configure do |config|
 end
 
 def set_credentials
-  ENV["GOOGLE_OAUTH_CREDENTIALS"] = '{"client_id":"my-google-client-id","access_token":"my-access-token","refresh_token":"my-refresh-token","scope":["https://gmail.googleapis.com/auth/gmail.readonly"],"expiration_time_millis":1454336608000}'
+  ENV["GOOGLE_OAUTH_CREDENTIALS"] = '{"client_id":"my-google-client-id","access_token":"my-access-token","refresh_token":"my-refresh-token","scope":["https://www.googleapis.com/auth/gmail.readonly"],"expiration_time_millis":1454336608000}'
   ENV["GOOGLE_CLIENT_ID"] = "my-google-client-id"
   ENV["GOOGLE_CLIENT_SECRET"] = "my-google-client-secret"
 
