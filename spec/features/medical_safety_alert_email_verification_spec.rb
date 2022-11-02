@@ -32,11 +32,11 @@ RSpec.describe "Drug email alert verifier" do
 
   def and_there_are_drug_advice_alerts
     stub_request(:get, "https://www.gov.uk/drug-device-alerts.atom")
-      .to_return(body: File.read(File.dirname(__FILE__) + "/example_rss_feed.xml"))
+      .to_return(body: File.read("#{File.dirname(__FILE__)}/example_rss_feed.xml"))
   end
 
   def and_there_is_a_drug_advice_alert_published_very_recently
-    rss = File.read(File.dirname(__FILE__) + "/example_rss_feed.xml")
+    rss = File.read("#{File.dirname(__FILE__)}/example_rss_feed.xml")
 
     rss = rss.gsub("2016-02-01T12:58:40+00:00", Time.now.iso8601)
 
@@ -47,7 +47,7 @@ RSpec.describe "Drug email alert verifier" do
   def stub_message_request(subject:, result:)
     query = "subject:%22#{subject.gsub(' ', '%20')}%22%20from:#{EmailVerifier::FROM_EMAIL.gsub('+', '%2B')}%20to:#{EmailVerifier::TO_EMAIL.gsub('+', '%2B')}"
 
-    stub_request(:get, "https://www.googleapis.com/gmail/v1/users/me/messages?maxResults=10000&q=#{query}")
+    stub_request(:get, "https://gmail.googleapis.com/gmail/v1/users/me/messages?maxResults=10000&q=#{query}")
       .to_return(body: { resultSizeEstimate: result }.to_json, headers: { "Content-Type" => "application/json" })
   end
 

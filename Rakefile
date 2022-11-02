@@ -16,9 +16,9 @@ def google_auth_client(additional_parameters = nil)
   client_secrets = Google::APIClient::ClientSecrets.load("client_secrets.json")
   auth_client = client_secrets.to_authorization
   auth_client.update!(
-    scope: "https://www.googleapis.com/auth/gmail.readonly",
+    scope: "https://gmail.googleapis.com/auth/gmail.readonly",
     redirect_uri: "http://localhost/oauth",
-    additional_parameters: additional_parameters,
+    additional_parameters:,
   )
   auth_client
 end
@@ -50,7 +50,7 @@ task :run_medical_alerts do
   require_relative "lib/email_verifier/medical_safety"
 
   verifier = EmailVerifier::MedicalSafety.new
-  TaskRunner.new.verify_with_retries(verifier: verifier) do
+  TaskRunner.new.verify_with_retries(verifier:) do
     if verifier.have_all_alerts_been_emailed?
       puts "All email alerts have been sent. Everything is okay!"
 
@@ -76,7 +76,7 @@ task :run_travel_alerts do
   require_relative "lib/email_verifier/travel_advice"
 
   verifier = EmailVerifier::TravelAdvice.new
-  TaskRunner.new.verify_with_retries(verifier: verifier) do
+  TaskRunner.new.verify_with_retries(verifier:) do
     if verifier.have_all_alerts_been_emailed?
       puts "All travel advice email alerts have been sent. Everything is okay!"
     else
