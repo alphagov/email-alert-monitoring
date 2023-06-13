@@ -1,7 +1,5 @@
 source "https://rubygems.org"
 
-ruby "~> 3.2.0"
-
 gem "google-api-client"
 gem "rake"
 gem "tzinfo"
