@@ -1,4 +1,5 @@
 require "pry-byebug"
+require_relative "./lib/prometheus_reporter"
 require_relative "./lib/task_runner"
 require "plek"
 require "rspec/core/rake_task"
@@ -50,9 +51,13 @@ task :run_medical_alerts do
   require_relative "lib/email_verifier/medical_safety"
 
   verifier = EmailVerifier::MedicalSafety.new
+  prometheus_reporter = PrometheusReporter.new("medical_alerts")
+
   TaskRunner.new.verify_with_retries(verifier:) do
     if verifier.have_all_alerts_been_emailed?
       puts "All email alerts have been sent. Everything is okay!"
+      prometheus_reporter.record_successful_run
+      prometheus_reporter.push
 
       verifier.acknowledged_alerts.each do |to_email, from_email, query|
         puts "#{to_email} has not received an email from #{from_email} with #{query} but has been acknowledged"
@@ -76,9 +81,13 @@ task :run_travel_alerts do
   require_relative "lib/email_verifier/travel_advice"
 
   verifier = EmailVerifier::TravelAdvice.new
+  prometheus_reporter = PrometheusReporter.new("travel_alerts")
+
   TaskRunner.new.verify_with_retries(verifier:) do
     if verifier.have_all_alerts_been_emailed?
       puts "All travel advice email alerts have been sent. Everything is okay!"
+      prometheus_reporter.record_successful_run
+      prometheus_reporter.push
     else
       verifier.missing_alerts.each do |to_email, from_email, query|
         /subject:(.*)/.match(query) do |subject|

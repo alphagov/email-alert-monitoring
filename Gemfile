@@ -6,6 +6,7 @@ gem "tzinfo"
 
 gem "govuk_app_config"
 gem "plek"
+gem "prometheus-client"
 gem "pry-byebug"
 gem "rspec"
 gem "rss"

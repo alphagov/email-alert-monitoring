@@ -108,6 +108,7 @@ GEM
     parser (3.2.1.1)
       ast (~> 2.4.1)
     plek (5.0.0)
+    prometheus-client (4.2.0)
     prometheus_exporter (2.0.8)
       webrick
     pry (0.14.2)
@@ -233,6 +234,7 @@ DEPENDENCIES
   google-api-client
   govuk_app_config
   plek
+  prometheus-client
   pry-byebug
   rake
   rspec
