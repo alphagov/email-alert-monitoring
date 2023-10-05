@@ -208,7 +208,7 @@ GEM
       multi_json (~> 1.10)
     statsd-ruby (1.5.0)
     thor (1.2.1)
-    timecop (0.9.6)
+    timecop (0.9.8)
     trailblazer-option (0.1.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
