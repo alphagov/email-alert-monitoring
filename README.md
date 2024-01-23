@@ -1,3 +1,6 @@
+**Email Alert Monitor is retired and monitoring is handled internally by [Email Alert API](https://github.com/alphagov/email-alert-api/)**
+
+
 # Email alert monitor
 
 GOV.UK provides email alerts. This repo provides scripts that verify that
